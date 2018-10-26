@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using EscalonamentoHorarios_Grupo3.Models;
 
+/*
 namespace EscalonamentoHorarios_Grupo3.Controllers
 
 {
@@ -52,3 +53,5 @@ namespace EscalonamentoHorarios_Grupo3.Controllers
     }
 
 
+
+    */

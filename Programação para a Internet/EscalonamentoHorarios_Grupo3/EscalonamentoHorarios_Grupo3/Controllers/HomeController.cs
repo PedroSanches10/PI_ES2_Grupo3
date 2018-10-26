@@ -15,6 +15,11 @@ namespace EscalonamentoHorarios_Grupo3.Controllers
             return View();
         }
 
+        public IActionResult Voluntariado()
+        {
+            return View();
+        }
+
         public IActionResult About()
         {
             ViewData["Message"] = "Your application description page.";
