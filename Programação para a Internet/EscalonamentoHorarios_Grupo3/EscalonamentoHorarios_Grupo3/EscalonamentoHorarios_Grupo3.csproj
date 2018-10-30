@@ -13,10 +13,6 @@
     <PackageReference Include="Microsoft.AspNetCore.App" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.1.4" PrivateAssets="All" />
   </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Views\Enfermeiro\" />
-  </ItemGroup>
   <ItemGroup>
     <None Remove="Views\Home\Enfermeiro\Enfermeiro.css" />
   </ItemGroup>

@@ -12,6 +12,7 @@ using Microsoft.EntityFrameworkCore;
 using EscalonamentoHorarios_Grupo3.Data;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using EscalonamentoHorarios_Grupo3.Models;
 
 namespace EscalonamentoHorarios_Grupo3
 {
@@ -41,6 +42,9 @@ namespace EscalonamentoHorarios_Grupo3
                 .AddEntityFrameworkStores<ApplicationDbContext>();
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+
+            services.AddDbContext<EscalonamentoHorarios_Grupo3DbContext>(options =>
+                    options.UseSqlServer(Configuration.GetConnectionString("EscalonamentoHorarios_Grupo3DbContext")));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
