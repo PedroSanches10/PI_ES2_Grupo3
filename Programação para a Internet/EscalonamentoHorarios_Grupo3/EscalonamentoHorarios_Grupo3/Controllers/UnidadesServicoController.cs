@@ -9,22 +9,22 @@ using EscalonamentoHorarios_Grupo3.Models;
 
 namespace EscalonamentoHorarios_Grupo3.Controllers
 {
-    public class EnfermeiroesController : Controller
+    public class UnidadesServicoController : Controller
     {
         private readonly EscalonamentoHorarios_Grupo3DbContext _context;
 
-        public EnfermeiroesController(EscalonamentoHorarios_Grupo3DbContext context)
+        public UnidadesServicoController(EscalonamentoHorarios_Grupo3DbContext context)
         {
             _context = context;
         }
 
-        // GET: Enfermeiroes
+        // GET: UnidadesServico
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Enfermeiro.ToListAsync());
+            return View(await _context.UnidadesServico.ToListAsync());
         }
 
-        // GET: Enfermeiroes/Details/5
+        // GET: UnidadesServico/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -32,39 +32,39 @@ namespace EscalonamentoHorarios_Grupo3.Controllers
                 return NotFound();
             }
 
-            var enfermeiro = await _context.Enfermeiro
+            var unidadesServico = await _context.UnidadesServico
                 .FirstOrDefaultAsync(m => m.ID == id);
-            if (enfermeiro == null)
+            if (unidadesServico == null)
             {
                 return NotFound();
             }
 
-            return View(enfermeiro);
+            return View(unidadesServico);
         }
 
-        // GET: Enfermeiroes/Create
+        // GET: UnidadesServico/Create
         public IActionResult Create()
         {
             return View();
         }
 
-        // POST: Enfermeiroes/Create
+        // POST: UnidadesServico/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ID,Title,ReleaseDate,Genre")] Enfermeiro enfermeiro)
+        public async Task<IActionResult> Create([Bind("ID,Title,ReleaseDate,Genre,Price")] UnidadesServico unidadesServico)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(enfermeiro);
+                _context.Add(unidadesServico);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View(enfermeiro);
+            return View(unidadesServico);
         }
 
-        // GET: Enfermeiroes/Edit/5
+        // GET: UnidadesServico/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -72,22 +72,22 @@ namespace EscalonamentoHorarios_Grupo3.Controllers
                 return NotFound();
             }
 
-            var enfermeiro = await _context.Enfermeiro.FindAsync(id);
-            if (enfermeiro == null)
+            var unidadesServico = await _context.UnidadesServico.FindAsync(id);
+            if (unidadesServico == null)
             {
                 return NotFound();
             }
-            return View(enfermeiro);
+            return View(unidadesServico);
         }
 
-        // POST: Enfermeiroes/Edit/5
+        // POST: UnidadesServico/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("ID,Title,ReleaseDate,Genre")] Enfermeiro enfermeiro)
+        public async Task<IActionResult> Edit(int id, [Bind("ID,Title,ReleaseDate,Genre,Price")] UnidadesServico unidadesServico)
         {
-            if (id != enfermeiro.ID)
+            if (id != unidadesServico.ID)
             {
                 return NotFound();
             }
@@ -96,12 +96,12 @@ namespace EscalonamentoHorarios_Grupo3.Controllers
             {
                 try
                 {
-                    _context.Update(enfermeiro);
+                    _context.Update(unidadesServico);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!EnfermeiroExists(enfermeiro.ID))
+                    if (!UnidadesServicoExists(unidadesServico.ID))
                     {
                         return NotFound();
                     }
@@ -112,10 +112,10 @@ namespace EscalonamentoHorarios_Grupo3.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(enfermeiro);
+            return View(unidadesServico);
         }
 
-        // GET: Enfermeiroes/Delete/5
+        // GET: UnidadesServico/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -123,30 +123,30 @@ namespace EscalonamentoHorarios_Grupo3.Controllers
                 return NotFound();
             }
 
-            var enfermeiro = await _context.Enfermeiro
+            var unidadesServico = await _context.UnidadesServico
                 .FirstOrDefaultAsync(m => m.ID == id);
-            if (enfermeiro == null)
+            if (unidadesServico == null)
             {
                 return NotFound();
             }
 
-            return View(enfermeiro);
+            return View(unidadesServico);
         }
 
-        // POST: Enfermeiroes/Delete/5
+        // POST: UnidadesServico/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var enfermeiro = await _context.Enfermeiro.FindAsync(id);
-            _context.Enfermeiro.Remove(enfermeiro);
+            var unidadesServico = await _context.UnidadesServico.FindAsync(id);
+            _context.UnidadesServico.Remove(unidadesServico);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool EnfermeiroExists(int id)
+        private bool UnidadesServicoExists(int id)
         {
-            return _context.Enfermeiro.Any(e => e.ID == id);
+            return _context.UnidadesServico.Any(e => e.ID == id);
         }
     }
 }

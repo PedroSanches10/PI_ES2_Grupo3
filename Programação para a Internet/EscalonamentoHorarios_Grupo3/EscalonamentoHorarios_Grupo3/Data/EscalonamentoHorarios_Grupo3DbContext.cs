@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
+using EscalonamentoHorarios_Grupo3.Models;
 
 namespace EscalonamentoHorarios_Grupo3.Models
 {
@@ -14,5 +15,7 @@ namespace EscalonamentoHorarios_Grupo3.Models
         }
 
         public DbSet<EscalonamentoHorarios_Grupo3.Models.Enfermeiro> Enfermeiro { get; set; }
+
+        public DbSet<EscalonamentoHorarios_Grupo3.Models.UnidadesServico> UnidadesServico { get; set; }
     }
 }
