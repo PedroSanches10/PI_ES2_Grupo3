@@ -10,12 +10,9 @@ namespace EscalonamentoHorarios_Grupo3.Models
     {
         public int VoluntarioID { get; set; }
         [System.ComponentModel.DataAnnotations.Required(ErrorMessage = "Introduza o nome")]
-        
+
         public string Nome { get; set; }
         [Required]
-        [StringLength(100, ErrorMessage = "The {0} must be at least {2} and at max {1} characters long.", MinimumLength = 6)]
-        [DataType(DataType.Password)]
-        [Display(Name = "Password")]
 
         public string Password { get; set; }
         [DataType(DataType.Password)]
@@ -29,21 +26,20 @@ namespace EscalonamentoHorarios_Grupo3.Models
 
         public string Morada { get; set; }
 
-        
+
         public string CodPostal { get; set; }
         [RegularExpression(@"\d\d\d\d(-\d\d\d)?", ErrorMessage = "Código postal inválido")]
         [Display(Name = "Código postal")]
-        
+
         public string Email { get; set; }
         [Required(ErrorMessage = "Introduza o email")]
         [EmailAddress(ErrorMessage = "Email inválido")]
-        //Portuguese Phone Number
-        
+
         public string Telemovel { get; set; }
         [RegularExpression(@"(2\d{8})|(9[1236]\d{7})", ErrorMessage = "Telemóvel inválido")]
         [Display(Name = "Telemóvel")]
 
-        
+
         public string DataNascimento { get; set; }
         [Required(ErrorMessage = "Introduza a data de nascimento")]
         [DataType(DataType.Date)]
@@ -53,5 +49,7 @@ namespace EscalonamentoHorarios_Grupo3.Models
         public string NIF { get; set; }
         [Required(ErrorMessage = "Introduza o Nif")]
         [Display(Name = "Contribuinte")]
+
     }
 }
+
