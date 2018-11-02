@@ -26,30 +26,32 @@ namespace EscalonamentoHorarios_Grupo3.Models
         [Required]
         [Display(Name = "Confirma password")]
         [Compare("Password", ErrorMessage = "A password e a sua confirmação não são iguais.")]
+
         public string Morada { get; set; }
 
-        //[Required(ErrorMessage = "Please enter the postal code")]
+        
+        public string CodPostal { get; set; }
         [RegularExpression(@"\d\d\d\d(-\d\d\d)?", ErrorMessage = "Código postal inválido")]
         [Display(Name = "Código postal")]
-        public string CodPostal { get; set; }
-
+        
+        public string Email { get; set; }
         [Required(ErrorMessage = "Introduza o email")]
         [EmailAddress(ErrorMessage = "Email inválido")]
-        public string Email { get; set; }
-
         //Portuguese Phone Number
+        
+        public string Telemovel { get; set; }
         [RegularExpression(@"(2\d{8})|(9[1236]\d{7})", ErrorMessage = "Telemóvel inválido")]
         [Display(Name = "Telemóvel")]
-        public string Telemovel { get; set; }
 
+        
+        public string DataNascimento { get; set; }
         [Required(ErrorMessage = "Introduza a data de nascimento")]
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
         [Display(Name = "Data de Nascimento")]
-        public string DataNascimento { get; set; }
 
+        public string NIF { get; set; }
         [Required(ErrorMessage = "Introduza o Nif")]
         [Display(Name = "Contribuinte")]
-        public string NIF { get; set; }
     }
 }
