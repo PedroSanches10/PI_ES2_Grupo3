@@ -1,0 +1,69 @@
+﻿@page
+@model EscalonamentoHorarios_Grupo3.Controllers.EditModel
+
+<h4>Voluntario</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Voluntario.VoluntarioID" />
+            <div class="form-group">
+                <label asp-for="Voluntario.Nome" class="control-label"></label>
+                <input asp-for="Voluntario.Nome" class="form-control" />
+                <span asp-validation-for="Voluntario.Nome" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Voluntario.Password" class="control-label"></label>
+                <input asp-for="Voluntario.Password" class="form-control" />
+                <span asp-validation-for="Voluntario.Password" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Voluntario.ConfirmPassword" class="control-label"></label>
+                <input asp-for="Voluntario.ConfirmPassword" class="form-control" />
+                <span asp-validation-for="Voluntario.ConfirmPassword" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Voluntario.Morada" class="control-label"></label>
+                <input asp-for="Voluntario.Morada" class="form-control" />
+                <span asp-validation-for="Voluntario.Morada" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Voluntario.CodPostal" class="control-label"></label>
+                <input asp-for="Voluntario.CodPostal" class="form-control" />
+                <span asp-validation-for="Voluntario.CodPostal" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Voluntario.Email" class="control-label"></label>
+                <input asp-for="Voluntario.Email" class="form-control" />
+                <span asp-validation-for="Voluntario.Email" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Voluntario.Telemovel" class="control-label"></label>
+                <input asp-for="Voluntario.Telemovel" class="form-control" />
+                <span asp-validation-for="Voluntario.Telemovel" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Voluntario.DataNascimento" class="control-label"></label>
+                <input asp-for="Voluntario.DataNascimento" class="form-control" />
+                <span asp-validation-for="Voluntario.DataNascimento" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Voluntario.NIF" class="control-label"></label>
+                <input asp-for="Voluntario.NIF" class="form-control" />
+                <span asp-validation-for="Voluntario.NIF" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-default" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="./Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

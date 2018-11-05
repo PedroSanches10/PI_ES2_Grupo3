@@ -1,0 +1,78 @@
+﻿@page
+@model EscalonamentoHorarios_Grupo3.Controllers.IndexModel
+
+<p>
+    <a asp-page="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Voluntario[0].Nome)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Voluntario[0].Password)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Voluntario[0].ConfirmPassword)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Voluntario[0].Morada)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Voluntario[0].CodPostal)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Voluntario[0].Email)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Voluntario[0].Telemovel)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Voluntario[0].DataNascimento)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Voluntario[0].NIF)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.Voluntario) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nome)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Password)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ConfirmPassword)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Morada)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CodPostal)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Email)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Telemovel)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DataNascimento)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NIF)
+            </td>
+            <td>
+                <a asp-page="./Edit" asp-route-id="@item.VoluntarioID">Edit</a> |
+                <a asp-page="./Details" asp-route-id="@item.VoluntarioID">Details</a> |
+                <a asp-page="./Delete" asp-route-id="@item.VoluntarioID">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

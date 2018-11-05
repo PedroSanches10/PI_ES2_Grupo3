@@ -1,0 +1,70 @@
+﻿@page
+@model EscalonamentoHorarios_Grupo3.Controllers.DeleteModel
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Voluntario</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Voluntario.Nome)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Voluntario.Nome)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Voluntario.Password)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Voluntario.Password)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Voluntario.ConfirmPassword)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Voluntario.ConfirmPassword)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Voluntario.Morada)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Voluntario.Morada)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Voluntario.CodPostal)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Voluntario.CodPostal)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Voluntario.Email)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Voluntario.Email)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Voluntario.Telemovel)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Voluntario.Telemovel)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Voluntario.DataNascimento)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Voluntario.DataNascimento)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Voluntario.NIF)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Voluntario.NIF)
+        </dd>
+    </dl>
+    
+    <form method="post">
+        <input type="hidden" asp-for="Voluntario.VoluntarioID" />
+        <input type="submit" value="Delete" class="btn btn-default" /> |
+        <a asp-page="./Index">Back to List</a>
+    </form>
+</div>
