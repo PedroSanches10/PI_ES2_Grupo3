@@ -6,6 +6,8 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Migrations\20181106171206_EnfermeiroDados.cs" />
+    <Compile Remove="Migrations\20181106171206_EnfermeiroDados.Designer.cs" />
     <Compile Remove="Views\Home\VoluntarioController.cs" />
   </ItemGroup>
 

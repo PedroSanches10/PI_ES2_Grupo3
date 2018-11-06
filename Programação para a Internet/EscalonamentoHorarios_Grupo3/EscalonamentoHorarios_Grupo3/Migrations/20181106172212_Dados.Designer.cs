@@ -4,14 +4,16 @@ using EscalonamentoHorarios_Grupo3.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace EscalonamentoHorarios_Grupo3.Migrations
 {
     [DbContext(typeof(EscalonamentoHorarios_Grupo3DbContext))]
-    partial class EscalonamentoHorarios_Grupo3DbContextModelSnapshot : ModelSnapshot
+    [Migration("20181106172212_Dados")]
+    partial class Dados
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
