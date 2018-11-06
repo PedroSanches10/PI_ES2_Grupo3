@@ -85,7 +85,7 @@ namespace EscalonamentoHorarios_Grupo3.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("ID,Title,ReleaseDate,Genre")] Enfermeiro enfermeiro)
+        public async Task<IActionResult> Edit(int id, [Bind("ID,Name,CellPhone,Department,Email,Street,Genre")] Enfermeiro enfermeiro)
         {
             if (id != enfermeiro.ID)
             {
