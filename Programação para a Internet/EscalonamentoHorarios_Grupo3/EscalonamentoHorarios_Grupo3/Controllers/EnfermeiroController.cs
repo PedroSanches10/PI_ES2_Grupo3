@@ -18,13 +18,13 @@ namespace EscalonamentoHorarios_Grupo3.Controllers
             _context = context;
         }
 
-        // GET: Enfermeiroes
+        // GET: Enfermeiro
         public async Task<IActionResult> Index()
         {
             return View(await _context.Enfermeiro.ToListAsync());
         }
 
-        // GET: Enfermeiroes/Details/5
+        // GET: Enfermeiro/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -33,7 +33,7 @@ namespace EscalonamentoHorarios_Grupo3.Controllers
             }
 
             var enfermeiro = await _context.Enfermeiro
-                .FirstOrDefaultAsync(m => m.ID == id);
+                .FirstOrDefaultAsync(m => m.EnfermeiroID == id);
             if (enfermeiro == null)
             {
                 return NotFound();
@@ -42,18 +42,18 @@ namespace EscalonamentoHorarios_Grupo3.Controllers
             return View(enfermeiro);
         }
 
-        // GET: Enfermeiroes/Create
+        // GET: Enfermeiro/Create
         public IActionResult Create()
         {
             return View();
         }
 
-        // POST: Enfermeiroes/Create
+        // POST: Enfermeiro/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ID,Title,ReleaseDate,Genre")] Enfermeiro enfermeiro)
+        public async Task<IActionResult> Create([Bind("EnfermeiroID,Nome,Password,ConfirmPassword,Morada,UnidadeServico,CodPostal,Email,Telemovel,DataNascimento,NIF")] Enfermeiro enfermeiro)
         {
             if (ModelState.IsValid)
             {
@@ -64,7 +64,7 @@ namespace EscalonamentoHorarios_Grupo3.Controllers
             return View(enfermeiro);
         }
 
-        // GET: Enfermeiroes/Edit/5
+        // GET: Enfermeiro/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -80,14 +80,14 @@ namespace EscalonamentoHorarios_Grupo3.Controllers
             return View(enfermeiro);
         }
 
-        // POST: Enfermeiroes/Edit/5
+        // POST: Enfermeiro/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("ID,Name,CellPhone,Department,Email,Street,Genre")] Enfermeiro enfermeiro)
+        public async Task<IActionResult> Edit(int id, [Bind("EnfermeiroID,Nome,Password,ConfirmPassword,Morada,UnidadeServico,CodPostal,Email,Telemovel,DataNascimento,NIF")] Enfermeiro enfermeiro)
         {
-            if (id != enfermeiro.ID)
+            if (id != enfermeiro.EnfermeiroID)
             {
                 return NotFound();
             }
@@ -101,7 +101,7 @@ namespace EscalonamentoHorarios_Grupo3.Controllers
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!EnfermeiroExists(enfermeiro.ID))
+                    if (!EnfermeiroExists(enfermeiro.EnfermeiroID))
                     {
                         return NotFound();
                     }
@@ -115,7 +115,7 @@ namespace EscalonamentoHorarios_Grupo3.Controllers
             return View(enfermeiro);
         }
 
-        // GET: Enfermeiroes/Delete/5
+        // GET: Enfermeiro/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -124,7 +124,7 @@ namespace EscalonamentoHorarios_Grupo3.Controllers
             }
 
             var enfermeiro = await _context.Enfermeiro
-                .FirstOrDefaultAsync(m => m.ID == id);
+                .FirstOrDefaultAsync(m => m.EnfermeiroID == id);
             if (enfermeiro == null)
             {
                 return NotFound();
@@ -133,7 +133,7 @@ namespace EscalonamentoHorarios_Grupo3.Controllers
             return View(enfermeiro);
         }
 
-        // POST: Enfermeiroes/Delete/5
+        // POST: Enfermeiro/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
@@ -146,7 +146,7 @@ namespace EscalonamentoHorarios_Grupo3.Controllers
 
         private bool EnfermeiroExists(int id)
         {
-            return _context.Enfermeiro.Any(e => e.ID == id);
+            return _context.Enfermeiro.Any(e => e.EnfermeiroID == id);
         }
     }
 }

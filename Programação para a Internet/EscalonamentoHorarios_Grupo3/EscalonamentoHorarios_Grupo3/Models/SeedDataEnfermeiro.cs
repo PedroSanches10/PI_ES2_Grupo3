@@ -1,34 +1,41 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace EscalonamentoHorarios_Grupo3.Models
 {
     public static class SeedDataEnfermeiro
 
     {
-        public static void Populate(IServiceProvider applicationServices)
-        {
-            using (var serviceScope = applicationServices.CreateScope())
-            {
-                var db = serviceScope.ServiceProvider.GetService<EscalonamentoHorarios_Grupo3DbContext>();
-                if (db.Enfermeiro.Any()) return;
-                db.Enfermeiro.AddRange(
-                new Enfermeiro { Name = "Kayak", Cellphone = 961234567, Department = "Watersports", Email = "ass@gmail.com", Street = "1", Genre = "M" },
-                new Enfermeiro { Name = "Lifejacket", Cellphone = 962345678, Department = "Watersports", Email = "hsbh@gmail.com", Street = "2", Genre = "M" },
-                new Enfermeiro { Name = "Soccer Ball", Cellphone = 963456789, Department = "Soccer", Email = "mdamd@gmail.com", Street = "3", Genre = "M" },
-                new Enfermeiro { Name = "Corner Flags", Cellphone = 965678901, Department = "Soccer", Email = "dda@gmail.com", Street = "4", Genre = "M" },
-                new Enfermeiro { Name = "Stadium", Cellphone = 966789012, Department = "Soccer", Email = "mdiad@gmail.com", Street = "5", Genre = "M" },
-                new Enfermeiro { Name = "Thinking Cap", Cellphone = 967890123, Department = "Chess", Email = "ddud@gmail.com", Street = "6", Genre = "M" },
-                new Enfermeiro { Name = "Unsteady Chair", Cellphone = 968901234, Department = "Chess", Email = "sjas@gmail.com", Street = "7", Genre = "M" },
-                new Enfermeiro { Name = "Human Chess Board", Cellphone = 969012345, Department = "Chess", Email = "iki@gmail.com", Street = "8", Genre = "M" },
-                new Enfermeiro { Name = "Bling-Bling King", Cellphone = 912345678, Department = "Chess", Email = "kiksia@gmail.com", Street = "9", Genre = "M" },
-                new Enfermeiro { Name = "Bling-Bling King", Cellphone = 913456789, Department = "Chess", Email = "kki@gmail.com", Street = "10", Genre = "M" }
+            
+                public static void Initialize(IServiceProvider serviceProvider)
+                {
+                    using (var context = new EscalonamentoHorarios_Grupo3DbContext(
+                    serviceProvider.GetRequiredService<DbContextOptions<EscalonamentoHorarios_Grupo3DbContext>>()))
+                    {
+                    // Look for any movies.
+                    if (context.Enfermeiro.Any())
+                        {
+                            return;   // DB has been seeded
+                    }
+
+                        context.Enfermeiro.AddRange(
+                    new Enfermeiro { Nome = "Maria Santos", Telemovel = "961234567", UnidadeServico = "Enfermagem geral", Email = "maria@gmail.com", CodPostal = "6300-786", NIF = "200123456", Morada = "Guarda" },
+                new Enfermeiro { Nome = "Manuel Silva", Telemovel = "962345678", UnidadeServico = "Enfermagem médico-cirúrgica", Email = "manuel@gmail.com", CodPostal = "423", NIF = "200123421", Morada = "Guarda" },
+                new Enfermeiro { Nome = "João Tavares", Telemovel = "963456789", UnidadeServico = "Enfermagem obstétrica", Email = "joao@gmail.com", CodPostal = "6300-342", NIF = "200123321", Morada = "Guarda" },
+                new Enfermeiro { Nome = "Luís Cunha", Telemovel = "965678901", UnidadeServico = "Enfermagem pediátrica", Email = "luis@gmail.com", CodPostal = "6300-897", NIF = "200765321", Morada = "Guarda" },
+                new Enfermeiro { Nome = "António Costa", Telemovel = "966789012", UnidadeServico = "Enfermagem psiquiátrica", Email = "antonio@gmail.com", CodPostal = "6300-432", NIF = "20012980", Morada = "Guarda" },
+                new Enfermeiro { Nome = "Sílvia Correia", Telemovel = "967890123", UnidadeServico = "Enfermagem geral", Email = "silvia@gmail.com", CodPostal = "6300-210", NIF = "200121432", Morada = "Guarda" },
+                new Enfermeiro { Nome = "Joana Pereira", Telemovel = "968901234", UnidadeServico = "Enfermagem médico-cirúrgica", Email = "joana@gmail.com", CodPostal = "6300-521", NIF = "200123000", Morada = "Guarda" },
+                new Enfermeiro { Nome = "Ricardo Ramos", Telemovel = "969012345", UnidadeServico = "Enfermagem obstétrica", Email = "ricrdo@gmail.com", CodPostal = "6300-512", NIF = "200123001", Morada = "Guarda" },
+                new Enfermeiro { Nome = "Nelson Duarte", Telemovel = "912345678", UnidadeServico = "Enfermagem Pediátrica", Email = "nelson@gmail.com", CodPostal = "6300-530", NIF = "200123123", Morada = "Guarda" },
+                new Enfermeiro { Nome = "Luísa Rocha", Telemovel = "913456789", UnidadeServico = "Enfermagem psiquiátrica", Email = "luisa@gmail.com", CodPostal = "6300-538", NIF = "200123999", Morada = "Guarda",  }
                 );
-                db.SaveChanges();
+                context.SaveChanges();
             }
         }
+
+        
     }
 }

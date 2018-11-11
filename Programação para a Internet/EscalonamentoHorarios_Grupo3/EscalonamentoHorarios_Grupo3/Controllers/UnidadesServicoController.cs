@@ -33,7 +33,7 @@ namespace EscalonamentoHorarios_Grupo3.Controllers
             }
 
             var unidadesServico = await _context.UnidadesServico
-                .FirstOrDefaultAsync(m => m.ID == id);
+                .FirstOrDefaultAsync(m => m.UnidadesServicoID == id);
             if (unidadesServico == null)
             {
                 return NotFound();
@@ -53,7 +53,7 @@ namespace EscalonamentoHorarios_Grupo3.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ID,Title,ReleaseDate,Genre,Price")] UnidadesServico unidadesServico)
+        public async Task<IActionResult> Create([Bind("UnidadesServicoID,Nome,Horario,AnosServico,Turnos,Enfermeiro")] UnidadesServico unidadesServico)
         {
             if (ModelState.IsValid)
             {
@@ -85,9 +85,9 @@ namespace EscalonamentoHorarios_Grupo3.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("ID,Title,ReleaseDate,Genre,Price")] UnidadesServico unidadesServico)
+        public async Task<IActionResult> Edit(int id, [Bind("UnidadesServicoID,Nome,Horario,AnosServico,Turnos,Enfermeiro")] UnidadesServico unidadesServico)
         {
-            if (id != unidadesServico.ID)
+            if (id != unidadesServico.UnidadesServicoID)
             {
                 return NotFound();
             }
@@ -101,7 +101,7 @@ namespace EscalonamentoHorarios_Grupo3.Controllers
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!UnidadesServicoExists(unidadesServico.ID))
+                    if (!UnidadesServicoExists(unidadesServico.UnidadesServicoID))
                     {
                         return NotFound();
                     }
@@ -124,7 +124,7 @@ namespace EscalonamentoHorarios_Grupo3.Controllers
             }
 
             var unidadesServico = await _context.UnidadesServico
-                .FirstOrDefaultAsync(m => m.ID == id);
+                .FirstOrDefaultAsync(m => m.UnidadesServicoID == id);
             if (unidadesServico == null)
             {
                 return NotFound();
@@ -146,7 +146,7 @@ namespace EscalonamentoHorarios_Grupo3.Controllers
 
         private bool UnidadesServicoExists(int id)
         {
-            return _context.UnidadesServico.Any(e => e.ID == id);
+            return _context.UnidadesServico.Any(e => e.UnidadesServicoID == id);
         }
     }
 }
