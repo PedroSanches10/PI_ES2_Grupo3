@@ -12,8 +12,8 @@ namespace EscalonamentoHorarios_Grupo3.Data
     public static class SeedData
 
     {
-        /*private const string ROLE_ADMINISTRATOR = "Administrator";
-        private const string ROLE_CUSTOMER = "Customer";*/
+        private const string ROLE_ADMINISTRATOR = "Administrator";
+        private const string ROLE_CUSTOMER = "Customer";
 
         public static void Enfermeiro(EscalonamentoHorarios_Grupo3DbContext db)
         {
@@ -24,7 +24,7 @@ namespace EscalonamentoHorarios_Grupo3.Data
 
         
 
-        /*private static async void MakeSureRoleExistsAsync(RoleManager<IdentityRole> roleManager, string role)
+        private static async void MakeSureRoleExistsAsync(RoleManager<IdentityRole> roleManager, string role)
         {
             if (!await roleManager.RoleExistsAsync(role))
             {
@@ -67,7 +67,7 @@ namespace EscalonamentoHorarios_Grupo3.Data
             {
                 await userManager.AddToRoleAsync(customer, ROLE_CUSTOMER);
             }
-        }*/
+        }
         private static void SeedServico(EscalonamentoHorarios_Grupo3DbContext db)
         {
             if (db.UnidadesServicos.Any()) return;

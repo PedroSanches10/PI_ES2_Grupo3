@@ -17,15 +17,9 @@ namespace EscalonamentoHorarios_Grupo3.Models
         [Required]
         public string Nome { get; set; }
 
-        [DataType(DataType.Password)]
-        [StringLength(100, ErrorMessage = "The {0} must be at least {2} and at max {1} characters long.", MinimumLength = 6)]
-        [Display(Name = "Password")]
-        public string Password { get; set; }
+       
 
-        [Required]
-        [Display(Name = "Confirma password")]
-        [Compare("Password", ErrorMessage = "A password e a sua confirmação não são iguais.")]
-        public string ConfirmPassword { get; set; }
+       
 
         public string Morada { get; set; }
 

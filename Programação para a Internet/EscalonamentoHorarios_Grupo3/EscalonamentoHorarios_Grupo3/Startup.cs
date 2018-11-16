@@ -87,7 +87,7 @@ namespace EscalonamentoHorarios_Grupo3
         )
         {
             // Must be the first thing to do
-            /*SeedData.CreateRolesAndUsersAsync(userManager, roleManager).Wait();
+            SeedData.CreateRolesAndUsersAsync(userManager, roleManager).Wait();
 
             if (env.IsDevelopment())
             {
@@ -101,7 +101,7 @@ namespace EscalonamentoHorarios_Grupo3
             {
                 app.UseExceptionHandler("/Home/Error");
                 app.UseHsts();
-            }*/
+            }
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();
