@@ -14,8 +14,9 @@ namespace EscalonamentoHorarios_Grupo3.Models
         {
         }
 
-        public DbSet<EscalonamentoHorarios_Grupo3.Models.Enfermeiro> Enfermeiro { get; set; }
+        public DbSet<EscalonamentoHorarios_Grupo3.Models.Enfermeiro> Enfermeiros { get; set; }
 
-        public DbSet<EscalonamentoHorarios_Grupo3.Models.UnidadesServico> UnidadesServico { get; set; }
+        public DbSet<EscalonamentoHorarios_Grupo3.Models.UnidadesServico> UnidadesServicos { get; set; }
     }
 }
+

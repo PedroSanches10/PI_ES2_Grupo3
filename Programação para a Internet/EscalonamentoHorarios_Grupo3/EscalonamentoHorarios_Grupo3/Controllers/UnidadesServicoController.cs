@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using EscalonamentoHorarios_Grupo3.Models;
 
+
 namespace EscalonamentoHorarios_Grupo3.Controllers
 {
     public class UnidadesServicoController : Controller
@@ -21,7 +22,7 @@ namespace EscalonamentoHorarios_Grupo3.Controllers
         // GET: UnidadesServico
         public async Task<IActionResult> Index()
         {
-            return View(await _context.UnidadesServico.ToListAsync());
+            return View(await _context.UnidadesServicos.ToListAsync());
         }
 
         // GET: UnidadesServico/Details/5
@@ -32,7 +33,7 @@ namespace EscalonamentoHorarios_Grupo3.Controllers
                 return NotFound();
             }
 
-            var unidadesServico = await _context.UnidadesServico
+            var unidadesServico = await _context.UnidadesServicos
                 .FirstOrDefaultAsync(m => m.UnidadesServicoID == id);
             if (unidadesServico == null)
             {
@@ -72,7 +73,7 @@ namespace EscalonamentoHorarios_Grupo3.Controllers
                 return NotFound();
             }
 
-            var unidadesServico = await _context.UnidadesServico.FindAsync(id);
+            var unidadesServico = await _context.UnidadesServicos.FindAsync(id);
             if (unidadesServico == null)
             {
                 return NotFound();
@@ -123,7 +124,7 @@ namespace EscalonamentoHorarios_Grupo3.Controllers
                 return NotFound();
             }
 
-            var unidadesServico = await _context.UnidadesServico
+            var unidadesServico = await _context.UnidadesServicos
                 .FirstOrDefaultAsync(m => m.UnidadesServicoID == id);
             if (unidadesServico == null)
             {
@@ -138,15 +139,15 @@ namespace EscalonamentoHorarios_Grupo3.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var unidadesServico = await _context.UnidadesServico.FindAsync(id);
-            _context.UnidadesServico.Remove(unidadesServico);
+            var unidadesServico = await _context.UnidadesServicos.FindAsync(id);
+            _context.UnidadesServicos.Remove(unidadesServico);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
         private bool UnidadesServicoExists(int id)
         {
-            return _context.UnidadesServico.Any(e => e.UnidadesServicoID == id);
+            return _context.UnidadesServicos.Any(e => e.UnidadesServicoID == id);
         }
     }
 }

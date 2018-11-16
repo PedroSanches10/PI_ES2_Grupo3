@@ -6,9 +6,11 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using EscalonamentoHorarios_Grupo3.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace EscalonamentoHorarios_Grupo3.Controllers
 {
+    [Authorize(Policy = "OnlyAdminAccess")]
     public class EnfermeiroController : Controller
     {
         private readonly EscalonamentoHorarios_Grupo3DbContext _context;
@@ -21,7 +23,7 @@ namespace EscalonamentoHorarios_Grupo3.Controllers
         // GET: Enfermeiro
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Enfermeiro.ToListAsync());
+            return View(await _context.Enfermeiros.ToListAsync());
         }
 
         // GET: Enfermeiro/Details/5
@@ -32,7 +34,7 @@ namespace EscalonamentoHorarios_Grupo3.Controllers
                 return NotFound();
             }
 
-            var enfermeiro = await _context.Enfermeiro
+            var enfermeiro = await _context.Enfermeiros
                 .FirstOrDefaultAsync(m => m.EnfermeiroID == id);
             if (enfermeiro == null)
             {
@@ -72,7 +74,7 @@ namespace EscalonamentoHorarios_Grupo3.Controllers
                 return NotFound();
             }
 
-            var enfermeiro = await _context.Enfermeiro.FindAsync(id);
+            var enfermeiro = await _context.Enfermeiros.FindAsync(id);
             if (enfermeiro == null)
             {
                 return NotFound();
@@ -123,7 +125,7 @@ namespace EscalonamentoHorarios_Grupo3.Controllers
                 return NotFound();
             }
 
-            var enfermeiro = await _context.Enfermeiro
+            var enfermeiro = await _context.Enfermeiros
                 .FirstOrDefaultAsync(m => m.EnfermeiroID == id);
             if (enfermeiro == null)
             {
@@ -138,15 +140,15 @@ namespace EscalonamentoHorarios_Grupo3.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var enfermeiro = await _context.Enfermeiro.FindAsync(id);
-            _context.Enfermeiro.Remove(enfermeiro);
+            var enfermeiro = await _context.Enfermeiros.FindAsync(id);
+            _context.Enfermeiros.Remove(enfermeiro);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
         private bool EnfermeiroExists(int id)
         {
-            return _context.Enfermeiro.Any(e => e.EnfermeiroID == id);
+            return _context.Enfermeiros.Any(e => e.EnfermeiroID == id);
         }
     }
 }

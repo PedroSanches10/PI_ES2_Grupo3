@@ -1,11 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Data;
 using System.Linq;
 using System.Threading.Tasks;
 
 namespace EscalonamentoHorarios_Grupo3.Models
 {
+    
+
     public class Enfermeiro
     {
         [System.ComponentModel.DataAnnotations.Required(ErrorMessage = "Introduza o nome")]

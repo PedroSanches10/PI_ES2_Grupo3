@@ -54,7 +54,7 @@ namespace EscalonamentoHorarios_Grupo3.Migrations
 
                     b.HasKey("EnfermeiroID");
 
-                    b.ToTable("Enfermeiro");
+                    b.ToTable("Enfermeiros");
                 });
 
             modelBuilder.Entity("EscalonamentoHorarios_Grupo3.Models.UnidadesServico", b =>
@@ -78,7 +78,7 @@ namespace EscalonamentoHorarios_Grupo3.Migrations
 
                     b.HasKey("UnidadesServicoID");
 
-                    b.ToTable("UnidadesServico");
+                    b.ToTable("UnidadesServicos");
                 });
 #pragma warning restore 612, 618
         }

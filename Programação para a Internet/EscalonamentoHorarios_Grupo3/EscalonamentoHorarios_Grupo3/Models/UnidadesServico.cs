@@ -5,6 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 
 namespace EscalonamentoHorarios_Grupo3.Models
+
 {
     public class UnidadesServico
     {
