@@ -33,7 +33,7 @@ namespace EscalonamentoHorarios_Grupo3.Data
         }
         public static async Task CreateRolesAndUsersAsync(UserManager<IdentityUser> userManager, RoleManager<IdentityRole> roleManager)
         {
-            const string ADMIN_USER = "admin@noemail.com";
+            /*const string ADMIN_USER = "admin@noemail.com";
             const string ADMIN_PASSWORD = "sECRET$123";
 
             MakeSureRoleExistsAsync(roleManager, ROLE_ADMINISTRATOR);
@@ -49,7 +49,7 @@ namespace EscalonamentoHorarios_Grupo3.Data
             if (!await userManager.IsInRoleAsync(admin, ROLE_ADMINISTRATOR))
             {
                 await userManager.AddToRoleAsync(admin, ROLE_ADMINISTRATOR);
-            }
+            }*/
         }
         public static async Task CreateTestUsersAsync(UserManager<IdentityUser> userManager, RoleManager<IdentityRole> roleManager)
         {
@@ -73,10 +73,10 @@ namespace EscalonamentoHorarios_Grupo3.Data
             if (db.UnidadesServicos.Any()) return;
 
             db.UnidadesServicos.AddRange(
-                    new UnidadesServico { Nome = "Maria Santos", UnidadesServicoID = 1, Enfermeiro = "maria@gmail.com", Turnos = "200123456", },
-                    new UnidadesServico { Nome = "Manuel Silva", UnidadesServicoID = 2, Enfermeiro = "manuel@gmail.com", Turnos = "200123421" },
-                    new UnidadesServico { Nome = "João Tavares", UnidadesServicoID = 3, Enfermeiro = "joao@gmail.com", Turnos = "200123321" },
-                    new UnidadesServico { Nome = "Luís Cunha", UnidadesServicoID = 4, Enfermeiro = "luis@gmail.com", Turnos = "200765321" }
+                    new UnidadesServico { Nome = "Maria Santos", Enfermeiro = "maria@gmail.com", Turnos = "200123456", AnosServico = new DateTime (2), Horario = new DateTime (2018, 11, 20, 10, 30, 0) },
+                    new UnidadesServico { Nome = "Manuel Silva", Enfermeiro = "manuel@gmail.com", Turnos = "200123421" },
+                    new UnidadesServico { Nome = "João Tavares", Enfermeiro = "joao@gmail.com", Turnos = "200123321" },
+                    new UnidadesServico { Nome = "Luís Cunha", Enfermeiro = "luis@gmail.com", Turnos = "200765321" }
                     );
             db.SaveChanges();
         }
@@ -86,7 +86,7 @@ namespace EscalonamentoHorarios_Grupo3.Data
             if (db.Enfermeiros.Any()) return;
 
             db.Enfermeiros.AddRange(
-                    new Enfermeiro{ Nome = "Maria Santos", Telemovel = "961234567", UnidadeServico = "Enfermagem geral", Email = "maria@gmail.com", CodPostal = "6300-786", NIF = "200123456", Morada = "Guarda" },
+                    new Enfermeiro{ Nome = "Maria Santos", Telemovel = "961234567", UnidadeServico = "Enfermagem geral", Email = "maria@gmail.com", CodPostal = "6300-786", NIF = "200123456", Morada = "Guarda", DataNascimento = new DateTime  (1992, 05, 12 ) },
                     new Enfermeiro { Nome = "Manuel Silva", Telemovel = "962345678", UnidadeServico = "Enfermagem médico-cirúrgica", Email = "manuel@gmail.com", CodPostal = "423", NIF = "200123421", Morada = "Guarda" },
                     new Enfermeiro { Nome = "João Tavares", Telemovel = "963456789", UnidadeServico = "Enfermagem obstétrica", Email = "joao@gmail.com", CodPostal = "6300-342", NIF = "200123321", Morada = "Guarda" },
                     new Enfermeiro { Nome = "Luís Cunha", Telemovel = "965678901", UnidadeServico = "Enfermagem pediátrica", Email = "luis@gmail.com", CodPostal = "6300-897", NIF = "200765321", Morada = "Guarda" },

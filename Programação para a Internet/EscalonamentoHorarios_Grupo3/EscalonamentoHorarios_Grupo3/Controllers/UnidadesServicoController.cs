@@ -7,7 +7,6 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using EscalonamentoHorarios_Grupo3.Models;
 
-
 namespace EscalonamentoHorarios_Grupo3.Controllers
 {
     public class UnidadesServicoController : Controller

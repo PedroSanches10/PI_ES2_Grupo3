@@ -6,11 +6,9 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using EscalonamentoHorarios_Grupo3.Models;
-using Microsoft.AspNetCore.Authorization;
 
 namespace EscalonamentoHorarios_Grupo3.Controllers
 {
-    [Authorize(Policy = "OnlyAdminAccess")]
     public class EnfermeiroController : Controller
     {
         private readonly EscalonamentoHorarios_Grupo3DbContext _context;
@@ -55,7 +53,7 @@ namespace EscalonamentoHorarios_Grupo3.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("EnfermeiroID,Nome,Password,ConfirmPassword,Morada,UnidadeServico,CodPostal,Email,Telemovel,DataNascimento,NIF")] Enfermeiro enfermeiro)
+        public async Task<IActionResult> Create([Bind("EnfermeiroID,Nome,Morada,UnidadeServico,CodPostal,Email,Telemovel,DataNascimento,NIF")] Enfermeiro enfermeiro)
         {
             if (ModelState.IsValid)
             {
@@ -87,7 +85,7 @@ namespace EscalonamentoHorarios_Grupo3.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("EnfermeiroID,Nome,Password,ConfirmPassword,Morada,UnidadeServico,CodPostal,Email,Telemovel,DataNascimento,NIF")] Enfermeiro enfermeiro)
+        public async Task<IActionResult> Edit(int id, [Bind("EnfermeiroID,Nome,Morada,UnidadeServico,CodPostal,Email,Telemovel,DataNascimento,NIF")] Enfermeiro enfermeiro)
         {
             if (id != enfermeiro.EnfermeiroID)
             {

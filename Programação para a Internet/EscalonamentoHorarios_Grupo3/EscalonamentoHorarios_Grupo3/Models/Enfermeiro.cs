@@ -42,7 +42,7 @@ namespace EscalonamentoHorarios_Grupo3.Models
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
         [Display(Name = "Data de Nascimento")]
-        public string DataNascimento { get; set; }
+        public DateTime DataNascimento { get; set; }
 
 
         [Required(ErrorMessage = "Introduza o Nif")]
