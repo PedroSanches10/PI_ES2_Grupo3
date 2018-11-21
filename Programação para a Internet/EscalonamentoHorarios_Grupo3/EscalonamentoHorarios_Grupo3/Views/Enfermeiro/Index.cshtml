@@ -7,71 +7,87 @@
 <h2>Index</h2>
 
 <p>
+    Find by name: @Html.TextBox("SearchString")
+    <input type="submit" value="Search" />
+</p>
+<p>
     <a asp-action="Create">Create New</a>
 </p>
 <table class="table">
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Nome)
+                @Html.ActionLink("Nome", "Index", new { sortOrder = ViewBag.NameSortParm })
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Morada)
+                First Name
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.UnidadeServico)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.CodPostal)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Email)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Telemovel)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.DataNascimento)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.NIF)
+                @Html.ActionLink("Data_Nascimento", "Index", new { sortOrder = ViewBag.DateSortParm })
             </th>
             <th></th>
         </tr>
+        <!-->><tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Nome)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Morada)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.UnidadeServico)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CodPostal)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Email)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Telemovel)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DataNascimento)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NIF)
+        </th>
+        <th></th>
+    </tr><!---->
     </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Nome)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Morada)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.UnidadeServico)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.CodPostal)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Email)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Telemovel)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.DataNascimento)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.NIF)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.EnfermeiroID">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.EnfermeiroID">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.EnfermeiroID">Delete</a>
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
+        <tbody>
+    @foreach (var item in Model) {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Nome)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Morada)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.UnidadeServico)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CodPostal)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Email)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Telemovel)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DataNascimento)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NIF)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.EnfermeiroID">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@item.EnfermeiroID">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@item.EnfermeiroID">Delete</a>
+                </td>
+            </tr>
+    }
+        </tbody>
+    </table>

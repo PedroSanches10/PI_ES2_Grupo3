@@ -12,6 +12,7 @@ namespace EscalonamentoHorarios_Grupo3.Controllers
     public class EnfermeiroController : Controller
     {
         private readonly EscalonamentoHorarios_Grupo3DbContext _context;
+       
 
         public EnfermeiroController(EscalonamentoHorarios_Grupo3DbContext context)
         {
@@ -19,10 +20,39 @@ namespace EscalonamentoHorarios_Grupo3.Controllers
         }
 
         // GET: Enfermeiro
-        public async Task<IActionResult> Index()
+        public ViewResult Index(string sortOrder, string searchString)
+        {
+            ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "EnfermeiroID" : "";
+            ViewBag.DateSortParm = sortOrder == "Nome" ? "Data_Nascimento" : "EnfermeiroID";
+
+            var enf = from s in _context.Enfermeiros
+                           select s;
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                enf = enf.Where(s => s.Nome.Contains(searchString)
+                                       || s.Nome.Contains(searchString));
+            }
+            switch (sortOrder)
+            {
+                case "Enfermeiro_ID":
+                    enf = enf.OrderByDescending(s => s.EnfermeiroID);
+                    break;
+                case "Nome":
+                    enf = enf.OrderBy(s => s.Nome);
+                    break;
+                case "Data_Nascimento":
+                    enf = enf.OrderByDescending(s => s.DataNascimento);
+                    break;
+                default:
+                    enf = enf.OrderBy(s => s.EnfermeiroID);
+                    break;
+            }
+            return View(enf.ToList());
+        }
+        /*public async Task<IActionResult> Index()
         {
             return View(await _context.Enfermeiros.ToListAsync());
-        }
+        }*/
 
         // GET: Enfermeiro/Details/5
         public async Task<IActionResult> Details(int? id)
@@ -150,3 +180,4 @@ namespace EscalonamentoHorarios_Grupo3.Controllers
         }
     }
 }
+
