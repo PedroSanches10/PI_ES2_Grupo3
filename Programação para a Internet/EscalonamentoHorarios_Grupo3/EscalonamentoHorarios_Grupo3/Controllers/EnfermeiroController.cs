@@ -6,9 +6,11 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using EscalonamentoHorarios_Grupo3.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace EscalonamentoHorarios_Grupo3.Controllers
 {
+    [Authorize(Policy = "OnlyAdminAccess")]
     public class EnfermeiroController : Controller
     {
         private readonly EscalonamentoHorarios_Grupo3DbContext _context;
