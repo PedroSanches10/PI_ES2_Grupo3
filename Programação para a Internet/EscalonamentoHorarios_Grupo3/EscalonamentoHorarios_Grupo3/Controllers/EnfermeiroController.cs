@@ -8,8 +8,10 @@ using Microsoft.EntityFrameworkCore;
 using EscalonamentoHorarios_Grupo3.Models;
 using PagedList;
 
+
 namespace EscalonamentoHorarios_Grupo3.Controllers
 {
+    
     public class EnfermeiroController : Controller
     {
         private readonly EscalonamentoHorarios_Grupo3DbContext _context;
@@ -21,9 +23,13 @@ namespace EscalonamentoHorarios_Grupo3.Controllers
         }
 
         // GET: Enfermeiro
-        public ViewResult Index(string searchString)
+        public ViewResult Index(string searchString, int? page)
         {
-  
+
+            if (searchString != null)
+            {
+                page = 1;
+            }
 
             var enf = from s in _context.Enfermeiros
                            select s;
@@ -32,8 +38,10 @@ namespace EscalonamentoHorarios_Grupo3.Controllers
                 enf = enf.Where(s => s.Nome.Contains(searchString));
                                       
             }
-            
-            return View(enf.ToList());
+
+            int pageSize = 3;
+            int pageNumber = (page ?? 1);
+            return View(enf.ToPagedList(pageNumber, pageSize));
 
         }
         /*public async Task<IActionResult> Index()
