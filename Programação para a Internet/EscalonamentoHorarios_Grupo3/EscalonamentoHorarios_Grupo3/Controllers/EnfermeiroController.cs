@@ -6,11 +6,10 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using EscalonamentoHorarios_Grupo3.Models;
-using Microsoft.AspNetCore.Authorization;
+using PagedList;
 
 namespace EscalonamentoHorarios_Grupo3.Controllers
 {
-    [Authorize(Policy = "OnlyAdminAccess")]
     public class EnfermeiroController : Controller
     {
         private readonly EscalonamentoHorarios_Grupo3DbContext _context;
@@ -22,34 +21,20 @@ namespace EscalonamentoHorarios_Grupo3.Controllers
         }
 
         // GET: Enfermeiro
-        public ViewResult Index(string sortOrder, string searchString)
+        public ViewResult Index(string searchString)
         {
-            ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "EnfermeiroID" : "";
-            ViewBag.DateSortParm = sortOrder == "Nome" ? "Data_Nascimento" : "EnfermeiroID";
+  
 
             var enf = from s in _context.Enfermeiros
                            select s;
             if (!String.IsNullOrEmpty(searchString))
             {
-                enf = enf.Where(s => s.Nome.Contains(searchString)
-                                       || s.Nome.Contains(searchString));
+                enf = enf.Where(s => s.Nome.Contains(searchString));
+                                      
             }
-            switch (sortOrder)
-            {
-                case "Enfermeiro_ID":
-                    enf = enf.OrderByDescending(s => s.EnfermeiroID);
-                    break;
-                case "Nome":
-                    enf = enf.OrderBy(s => s.Nome);
-                    break;
-                case "Data_Nascimento":
-                    enf = enf.OrderByDescending(s => s.DataNascimento);
-                    break;
-                default:
-                    enf = enf.OrderBy(s => s.EnfermeiroID);
-                    break;
-            }
+            
             return View(enf.ToList());
+
         }
         /*public async Task<IActionResult> Index()
         {

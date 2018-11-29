@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Data;
 using System.Linq;
@@ -50,4 +51,6 @@ namespace EscalonamentoHorarios_Grupo3.Models
         public string NIF { get; set; }
 
     }
+
+    
 }

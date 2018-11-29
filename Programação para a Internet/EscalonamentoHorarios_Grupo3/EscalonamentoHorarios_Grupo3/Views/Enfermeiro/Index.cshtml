@@ -6,57 +6,51 @@
 
 <h2>Index</h2>
 
-<p>
-    Find by name: @Html.TextBox("SearchString")
-    <input type="submit" value="Search" />
-</p>
+
 <p>
     <a asp-action="Create">Create New</a>
 </p>
+
+@using (Html.BeginForm())
+{
+    <p>
+        Find by name: @Html.TextBox("SearchString")
+        <input type="submit" value="Search" />
+    </p>
+}
 <table class="table">
     <thead>
         <tr>
             <th>
-                @Html.ActionLink("Nome", "Index", new { sortOrder = ViewBag.NameSortParm })
+                @Html.DisplayNameFor(model => model.Nome)
             </th>
             <th>
-                First Name
+                @Html.DisplayNameFor(model => model.Morada)
             </th>
             <th>
-                @Html.ActionLink("Data_Nascimento", "Index", new { sortOrder = ViewBag.DateSortParm })
+                @Html.DisplayNameFor(model => model.UnidadeServico)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CodPostal)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Email)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Telemovel)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DataNascimento)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NIF)
             </th>
             <th></th>
         </tr>
-        <!-->><tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Nome)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Morada)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.UnidadeServico)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.CodPostal)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Email)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Telemovel)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.DataNascimento)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.NIF)
-        </th>
-        <th></th>
-    </tr><!---->
     </thead>
-        <tbody>
-    @foreach (var item in Model) {
+    <tbody>
+        @foreach (var item in Model)
+        {
             <tr>
                 <td>
                     @Html.DisplayFor(modelItem => item.Nome)
@@ -88,6 +82,6 @@
                     <a asp-action="Delete" asp-route-id="@item.EnfermeiroID">Delete</a>
                 </td>
             </tr>
-    }
-        </tbody>
-    </table>
+        }
+    </tbody>
+</table>
