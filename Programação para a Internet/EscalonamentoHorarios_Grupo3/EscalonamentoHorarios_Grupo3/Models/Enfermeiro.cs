@@ -12,10 +12,10 @@ namespace EscalonamentoHorarios_Grupo3.Models
 
     public class Enfermeiro
     {
-        [System.ComponentModel.DataAnnotations.Required(ErrorMessage = "Introduza o nome")]
+        
         public int EnfermeiroID { get; set; }
 
-        [Required]
+        [System.ComponentModel.DataAnnotations.Required(ErrorMessage = "Introduza o nome")]
         public string Nome { get; set; }
 
        

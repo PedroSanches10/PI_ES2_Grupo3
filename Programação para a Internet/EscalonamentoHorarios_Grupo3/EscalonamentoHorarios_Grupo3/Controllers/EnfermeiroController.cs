@@ -6,16 +6,13 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using EscalonamentoHorarios_Grupo3.Models;
-using PagedList;
 
-
-namespace EscalonamentoHorarios_Grupo3.Controllers
+namespace SportsStore.Controllers
 {
-    
     public class EnfermeiroController : Controller
     {
+        private const int PAGE_SIZE = 5;
         private readonly EscalonamentoHorarios_Grupo3DbContext _context;
-       
 
         public EnfermeiroController(EscalonamentoHorarios_Grupo3DbContext context)
         {
@@ -23,73 +20,93 @@ namespace EscalonamentoHorarios_Grupo3.Controllers
         }
 
         // GET: Enfermeiro
-        public ViewResult Index(string searchString, int? page)
+        public async Task<IActionResult> Index(EnfermeirosListViewModel model = null, int page = 1)
         {
+            string category = null;
 
-            if (searchString != null)
+            if (model != null)
+            {
+                category = model.CurrentName;
+                page = 1;
+            }
+
+            var enfermeiros = _context.Enfermeiros
+                .Where(p => category == null || p.Nome.Contains(category));
+
+            int numEnfermeiros = await enfermeiros.CountAsync();
+
+            if (page > (numEnfermeiros / PAGE_SIZE) + 1)
             {
                 page = 1;
             }
 
-            var enf = from s in _context.Enfermeiros
-                           select s;
-            if (!String.IsNullOrEmpty(searchString))
-            {
-                enf = enf.Where(s => s.Nome.Contains(searchString));
-                                      
-            }
+            var enfermeirosList = await enfermeiros
+                    .OrderBy(p => p.Nome)
+                    .Skip(PAGE_SIZE * (page - 1))
+                    .Take(PAGE_SIZE)
+                    .ToListAsync();
 
-            int pageSize = 3;
-            int pageNumber = (page ?? 1);
-            return View(enf.ToPagedList(pageNumber, pageSize));
-
+            return View(
+                new EnfermeirosListViewModel
+                {
+                    Enfermeiros = enfermeirosList,
+                    Paginacao = new PagingViewModel
+                    {
+                        CurrentPage = page,
+                        PageSize = PAGE_SIZE,
+                        Totaltems = numEnfermeiros
+                    },
+                    CurrentName = category
+                }
+            );
         }
-        /*public async Task<IActionResult> Index()
-        {
-            return View(await _context.Enfermeiros.ToListAsync());
-        }*/
 
-        // GET: Enfermeiro/Details/5
+        // GET: Products/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
             {
-                return NotFound();
+                return RedirectToAction("Index");
+                //return NotFound();
             }
 
-            var enfermeiro = await _context.Enfermeiros
-                .FirstOrDefaultAsync(m => m.EnfermeiroID == id);
-            if (enfermeiro == null)
+            var product = await _context.Enfermeiros
+                .FirstOrDefaultAsync(p => p.EnfermeiroID == id);
+
+            if (product == null)
             {
-                return NotFound();
+                return NotFound(); // todo: replace by a view showing a more insightfull message
             }
 
-            return View(enfermeiro);
+            return View(product);
         }
 
-        // GET: Enfermeiro/Create
+        // GET: Products/Create
         public IActionResult Create()
         {
             return View();
         }
 
-        // POST: Enfermeiro/Create
+        // POST: Products/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("EnfermeiroID,Nome,Morada,UnidadeServico,CodPostal,Email,Telemovel,DataNascimento,NIF")] Enfermeiro enfermeiro)
+        public async Task<IActionResult> Create([Bind("ProductId,Name,Description,Price,Category")] Enfermeiro enfermeiro)
         {
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
-                _context.Add(enfermeiro);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                return View(enfermeiro);
             }
-            return View(enfermeiro);
+
+            _context.Add(enfermeiro);
+            await _context.SaveChangesAsync();
+
+            // todo: inform user of the operation success
+            return RedirectToAction(nameof(Index));
         }
 
-        // GET: Enfermeiro/Edit/5
+        // GET: Products/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -97,50 +114,57 @@ namespace EscalonamentoHorarios_Grupo3.Controllers
                 return NotFound();
             }
 
-            var enfermeiro = await _context.Enfermeiros.FindAsync(id);
-            if (enfermeiro == null)
+            var product = await _context.Enfermeiros.FindAsync(id);
+            if (product == null)
             {
+                // todo: inform user ...
                 return NotFound();
             }
-            return View(enfermeiro);
+            return View(product);
         }
 
-        // POST: Enfermeiro/Edit/5
+        // POST: Products/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("EnfermeiroID,Nome,Morada,UnidadeServico,CodPostal,Email,Telemovel,DataNascimento,NIF")] Enfermeiro enfermeiro)
+        public async Task<IActionResult> Edit(int id, [Bind("ProductId,Name,Description,Price,Category")] Enfermeiro enfermeiro)
         {
             if (id != enfermeiro.EnfermeiroID)
             {
+                // todo: inform user ...
                 return NotFound();
             }
 
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
-                try
-                {
-                    _context.Update(enfermeiro);
-                    await _context.SaveChangesAsync();
-                }
-                catch (DbUpdateConcurrencyException)
-                {
-                    if (!EnfermeiroExists(enfermeiro.EnfermeiroID))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
-                }
-                return RedirectToAction(nameof(Index));
+                return View(enfermeiro);
             }
-            return View(enfermeiro);
+
+            try
+            {
+                _context.Update(enfermeiro);
+                await _context.SaveChangesAsync();
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                if (!ProductExists(enfermeiro.EnfermeiroID))
+                {
+                    // todo: show an error message, decide what to do ...
+                    return NotFound();
+                }
+                else
+                {
+                    // todo: show a message? try again?
+                    throw;
+                }
+            }
+
+            // todo: inform user of the operation success
+            return RedirectToAction(nameof(Index));
         }
 
-        // GET: Enfermeiro/Delete/5
+        // GET: Products/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -148,30 +172,38 @@ namespace EscalonamentoHorarios_Grupo3.Controllers
                 return NotFound();
             }
 
-            var enfermeiro = await _context.Enfermeiros
-                .FirstOrDefaultAsync(m => m.EnfermeiroID == id);
-            if (enfermeiro == null)
+            var product = await _context.Enfermeiros
+                .FirstOrDefaultAsync(p => p.EnfermeiroID == id);
+
+            if (product == null)
             {
+                // show appropriate message
                 return NotFound();
             }
 
-            return View(enfermeiro);
+            return View(product);
         }
 
-        // POST: Enfermeiro/Delete/5
+        // POST: Products/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var enfermeiro = await _context.Enfermeiros.FindAsync(id);
-            _context.Enfermeiros.Remove(enfermeiro);
-            await _context.SaveChangesAsync();
+            // todo: add additional verification checking the product id
+            var product = await _context.Enfermeiros.FindAsync(id);
+            if (product != null)
+            {
+                _context.Enfermeiros.Remove(product);
+                await _context.SaveChangesAsync();
+            }
+
+            // todo: inform user of the operation success
             return RedirectToAction(nameof(Index));
         }
 
-        private bool EnfermeiroExists(int id)
+        private bool ProductExists(int id)
         {
-            return _context.Enfermeiros.Any(e => e.EnfermeiroID == id);
+            return _context.Enfermeiros.Any(p => p.EnfermeiroID == id);
         }
     }
 }
