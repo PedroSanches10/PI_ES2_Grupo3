@@ -14,7 +14,25 @@ namespace EscalonamentoHorarios_Grupo3.Models
         {
         }
 
-        public DbSet<EscalonamentoHorarios_Grupo3.Models.Enfermeiro> Enfermeiros { get; set; }
+        /*protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            //Chave primária composta
+            modelBuilder.Entity<UnidadesServico>().HasKey(o => new { o.EnfermeiroID, o.UnidadesServicoID
+    });
+
+            //Relação 1 -> N
+            modelBuilder.Entity<Enfermeiro>()
+                .HasOne(ee => ee.UnidadesServicos)
+                .WithMany(e => e.E)
+                .HasForeignKey(ee => ee.EnfermeiroID)
+                .OnDelete(DeleteBehavior.Cascade);
+
+    
+
+            base.OnModelCreating(modelBuilder);
+}*/
+
+public DbSet<EscalonamentoHorarios_Grupo3.Models.Enfermeiro> Enfermeiros { get; set; }
 
         public DbSet<EscalonamentoHorarios_Grupo3.Models.UnidadesServico> UnidadesServicos { get; set; }
     }

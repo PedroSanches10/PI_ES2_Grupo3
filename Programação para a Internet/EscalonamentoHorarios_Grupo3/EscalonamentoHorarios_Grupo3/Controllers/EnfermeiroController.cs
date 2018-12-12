@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using EscalonamentoHorarios_Grupo3.Models;
 
-namespace SportsStore.Controllers
+namespace EscalonamentoHorarios_Grupo3.Controllers
 {
     public class EnfermeiroController : Controller
     {
@@ -61,7 +61,7 @@ namespace SportsStore.Controllers
             );
         }
 
-        // GET: Products/Details/5
+        // GET: Enfermeiro/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -81,13 +81,13 @@ namespace SportsStore.Controllers
             return View(product);
         }
 
-        // GET: Products/Create
+        // GET: Enfermeiro/Create
         public IActionResult Create()
         {
             return View();
         }
 
-        // POST: Products/Create
+        // POST: Enfermeiro/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
@@ -106,7 +106,7 @@ namespace SportsStore.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-        // GET: Products/Edit/5
+        // GET: Enfermeiro/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -123,7 +123,7 @@ namespace SportsStore.Controllers
             return View(product);
         }
 
-        // POST: Products/Edit/5
+        // POST: Enfermeiro/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
@@ -164,7 +164,7 @@ namespace SportsStore.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-        // GET: Products/Delete/5
+        // GET: Enfermeiro/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -184,7 +184,7 @@ namespace SportsStore.Controllers
             return View(product);
         }
 
-        // POST: Products/Delete/5
+        // POST: Enfermeiro/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)

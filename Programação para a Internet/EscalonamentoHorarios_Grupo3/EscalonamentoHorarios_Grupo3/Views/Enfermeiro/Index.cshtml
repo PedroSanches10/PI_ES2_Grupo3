@@ -1,42 +1,57 @@
-﻿@addTagHelper EscalonamentoHorarios_Grupo3.Infrastructure.*, PaginacaoTagHelper
-@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
-
+﻿@*@model IEnumerable<EscalonamentoHorarios_Grupo3.Models.Enfermeiro>*@
 @model EnfermeirosListViewModel
 @{
     ViewData["Title"] = "Lista de Enfermeiros";
 }
-
-<h2>@ViewData["Title"]</h2>
-
-
-<div class="container">
-    <div class="panel panel-default">
-        <div class="panel-heading">Pesquisa</div>
-        <div class="panel-body">
-            <form asp-action="Index">
-                <div class="form-group">
-                    <label asp-for="CurrentName" class="control-label"></label>
-                    <input asp-for="CurrentName" class="form-control" />
-                </div>
-                <div class="form-group">
-                    <input type="submit" value="Pesquisar" class="btn btn-default" />
-                </div>
-            </form>
-        </div>
+<p></p>
+@if (TempData["notice"] != null)
+{
+    <!--Mensagem de sucesso quando insere enfermeiro-->
+    <div id="suc_form" class="alert alert-success">
+        <strong>Sucesso!</strong> O registo foi inserido com sucesso.
     </div>
-</div>
+}
+@if (TempData["deleteEnf"] != null)
+{
+    <!--Mensagem de sucesso quando elimina enfermeiro-->
+    <div id="suc_form" class="alert alert-success">
+        <strong>Sucesso!</strong> Enfermeiro eliminado com sucesso.
+    </div>
+}
+@if (TempData["successEdit"] != null)
+{
+    <!--Mensagem de sucesso quando edita enfermeiro-->
+    <div id="suc_form" class="alert alert-success">
+        <strong>Sucesso!</strong> O registo foi alterado com sucesso.
+    </div>
+}
 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script>
+    //Passados 5 segundos a mensagem desaparece
+    $(document).ready(function () {
+        $("#suc_form").hide(10000);
+    });
+</script>
+<h2>Lista de Enfermeiros</h2>
+<form asp-action="Index">
+    <p style="float: right">
+        Pesquisar por nome: <input style="width: 200px;" asp-for="CurrentName" placeholder="Insira o nome a pesquisar" />
+        <input type="submit" value="Pesquisar" class="btn btn-info" />
+    </p>
+</form>
+<!--<div style="background-color:#17A5D4; padding: 30px; border-radius: 25px;">-->
 <table class="table">
     <thead>
         <tr>
             <th>
+                Número Mecanográfico
+            </th>
+            <th>
                 Nome
             </th>
             <th>
-                Unidade Serviço
-            </th>
-            <th style="text-align:right;">
-                Email
+                Especialidade
             </th>
             <th></th>
         </tr>
@@ -46,27 +61,39 @@
         {
             <tr>
                 <td>
+                    @Html.DisplayFor(modelItem => item.NumeroEnf)
+                </td>
+                <td>
                     @Html.DisplayFor(modelItem => item.Nome)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.UnidadeServico)
-                </td>
-                <td style="text-align:right;">
-                    @Html.DisplayFor(modelItem => item.Email)
+                    @Html.DisplayFor(modelItem => item.UnidadesServico.UnidadesServicoID)
                 </td>
                 <td>
-                    <a asp-action="Details" class="btn btn-primary" asp-route-id="@item.EnfermeiroID">Details</a>
-                    <a asp-action="Edit" class="btn btn-warning" asp-route-id="@item.EnfermeiroID">Edit</a>
-                    <a asp-action="Delete" class="btn btn-danger" asp-route-id="@item.EnfermeiroID">Delete</a>
+                    <a asp-action="Edit" asp-route-id="@item.EnfermeiroID"><input type="button" value="Editar" class="btn btn-warning" /></a>
+                    <a asp-action="Details" asp-route-id="@item.EnfermeiroID"><input type="button" value="Detalhes" class="btn btn-info" /></a>
+                    <a asp-action="Delete" asp-route-id="@item.EnfermeiroID"><input type="button" value="Eliminar" class="btn btn-danger" /></a>
                 </td>
             </tr>
         }
     </tbody>
 </table>
-
-<div page-model="@Model.Paginacao"></div>
-
-
+<div page-model="@Model.Paginacao"
+     page-action="Index"
+     page-classes-enabled="true"
+     page-class="btn"
+     page-class-normal="btn-default"
+     page-class-selected="btn-primary"
+     class="btn-group pull-right">
+</div>
+<br />
+<hr />
 <p>
-    <a asp-action="Create" class="btn btn-default">Create New</a>
+    <a asp-action="Create"><input type="button" value="Inserir um novo enfermeiro" class="btn btn-primary" /></a>
 </p>
+<hr />
+<div>
+    <a href='@Url.Action("GestaoHospitalar", "DiretorServico")'>
+        <input type="button" class="btn btn-default" value="Voltar à página inicial" />
+    </a>
+</div>

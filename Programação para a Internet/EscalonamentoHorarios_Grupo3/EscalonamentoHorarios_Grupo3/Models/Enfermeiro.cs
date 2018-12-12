@@ -12,24 +12,26 @@ namespace EscalonamentoHorarios_Grupo3.Models
 
     public class Enfermeiro
     {
-        
+        [Required]
         public int EnfermeiroID { get; set; }
+
+        [Required(ErrorMessage = "Introduza o número de Enfermeiro")]
+        [RegularExpression(@"[E]\d+", ErrorMessage = "Número errado")]
+        public string NumeroEnf { get; set; }
 
         [System.ComponentModel.DataAnnotations.Required(ErrorMessage = "Introduza o nome")]
         public string Nome { get; set; }
 
-       
+        public UnidadesServico UnidadesServico { get; set; }
+        public int UnidadesServicoID { get; set; }
 
-       
 
-        public string Morada { get; set; }
 
-        [Required]
-        public string UnidadeServico { get; set; }
 
-        [RegularExpression(@"\d\d\d\d(-\d\d\d)?", ErrorMessage = "Código postal inválido")]
-        [Display(Name = "Código postal")]
-        public string CodPostal { get; set; }
+
+        
+
+        
 
         [Required(ErrorMessage = "Introduza o email")]
         [EmailAddress(ErrorMessage = "Email inválido")]
@@ -50,7 +52,15 @@ namespace EscalonamentoHorarios_Grupo3.Models
         [Display(Name = "Contribuinte")]
         public string NIF { get; set; }
 
+        [Required]
+        public bool? Filhos { get; set; }
+
+        [DataType(DataType.Date, ErrorMessage = "Data de nascimento inválida")]
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = false)]
+        public DateTime? DataNascimentoFilhos { get; set; }
+
+        public ICollection<UnidadesServico> UnidadesServicos { get; set; }
     }
 
-    
+
 }

@@ -5,14 +5,29 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using EscalonamentoHorarios_Grupo3.Models;
+using System.Threading;
 
 namespace EscalonamentoHorarios_Grupo3.Controllers
 {
     public class HomeController : Controller
     {
+        public object JsonRequestBehavior { get; private set; }
+
         public IActionResult Index()
         {
             return View();
+        }
+
+        public ActionResult ExampleDemo()
+        {
+            Thread.Sleep(1000);
+            string status = "Task Completed Successfully";
+            return Json(status, JsonRequestBehavior);
+        }
+
+        private ActionResult Json(string status, object allowGet)
+        {
+            throw new NotImplementedException();
         }
 
         public IActionResult About()

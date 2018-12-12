@@ -68,15 +68,30 @@ namespace EscalonamentoHorarios_Grupo3.Data
                 await userManager.AddToRoleAsync(customer, ROLE_CUSTOMER);
             }
         }
+
+        
         private static void SeedServico(EscalonamentoHorarios_Grupo3DbContext db)
         {
             if (db.UnidadesServicos.Any()) return;
 
             db.UnidadesServicos.AddRange(
-                    new UnidadesServico { Nome = "Maria Santos", Enfermeiro = "maria@gmail.com", Turnos = "200123456", AnosServico = new DateTime (2), Horario = new DateTime (2018, 11, 20, 10, 30, 0) },
-                    new UnidadesServico { Nome = "Manuel Silva", Enfermeiro = "manuel@gmail.com", Turnos = "200123421" },
-                    new UnidadesServico { Nome = "João Tavares", Enfermeiro = "joao@gmail.com", Turnos = "200123321" },
-                    new UnidadesServico { Nome = "Luís Cunha", Enfermeiro = "luis@gmail.com", Turnos = "200765321" }
+
+                new UnidadesServico { Servico = "Teste" },
+                new UnidadesServico { Servico = "Enfermagem Médico-Cirúrgica", }
+                
+
+                );
+            if (db.UnidadesServicos.Any()) return;
+
+            UnidadesServico servico = GetUnidadeServicoCreatingIfNeed(db, "Enfermagem Geral");
+            Enfermeiro enfermeiro = db.Enfermeiros.SingleOrDefault(e => e.Nome == "Marisa Reduto");
+            db.UnidadesServicos.Add(new UnidadesServico { EnfermeiroID = servico.UnidadesServicoID, UnidadesServicoID = servico.EnfermeiroID, Data = new DateTime(2018, 11, 16) });
+
+            db.UnidadesServicos.AddRange(
+                    new UnidadesServico { UnidadesServicoID = 1, EnfermeiroID = 1, Data  = new DateTime (1), Servico = "Pneumologia" },
+                    new UnidadesServico { UnidadesServicoID = 2, EnfermeiroID = 2, Data = new DateTime(2), Servico = "Enfermagem geral" },
+                    new UnidadesServico { UnidadesServicoID = 3, EnfermeiroID = 3, Data = new DateTime(3), Servico = "Pneumologia" },
+                    new UnidadesServico { UnidadesServicoID = 4, EnfermeiroID = 4, Data = new DateTime(4), Servico = "Pneumologia" }
                     );
             db.SaveChanges();
         }
@@ -85,21 +100,37 @@ namespace EscalonamentoHorarios_Grupo3.Data
         {
             if (db.Enfermeiros.Any()) return;
 
+            UnidadesServico geral = GetUnidadeServicoCreatingIfNeed(db, "Enfermagem Geral");
+
             db.Enfermeiros.AddRange(
-                    new Enfermeiro{ Nome = "Maria Santos", Telemovel = "961234567", UnidadeServico = "Enfermagem geral", Email = "maria@gmail.com", CodPostal = "6300-786", NIF = "200123456", Morada = "Guarda", DataNascimento = new DateTime  (1992, 05, 12 ), EnfermeiroID = 1 },
-                    new Enfermeiro { Nome = "Manuel Silva", Telemovel = "962345678", UnidadeServico = "Enfermagem médico-cirúrgica", Email = "manuel@gmail.com", CodPostal = "423", NIF = "200123421", Morada = "Guarda", DataNascimento = new DateTime(1992, 05, 12), EnfermeiroID = 2 },
-                    new Enfermeiro { Nome = "João Tavares", Telemovel = "963456789", UnidadeServico = "Enfermagem obstétrica", Email = "joao@gmail.com", CodPostal = "6300-342", NIF = "200123321", Morada = "Guarda", DataNascimento = new DateTime(1992, 05, 12), EnfermeiroID = 3 },
-                    new Enfermeiro { Nome = "Luís Cunha", Telemovel = "965678901", UnidadeServico = "Enfermagem pediátrica", Email = "luis@gmail.com", CodPostal = "6300-897", NIF = "200765321", Morada = "Guarda", DataNascimento = new DateTime(1992, 05, 12), EnfermeiroID = 4 },
-                    new Enfermeiro { Nome = "António Costa", Telemovel = "966789012", UnidadeServico = "Enfermagem psiquiátrica", Email = "antonio@gmail.com", CodPostal = "6300-432", NIF = "20012980", Morada = "Guarda", DataNascimento = new DateTime(1992, 05, 12), EnfermeiroID = 5 },
-                    new Enfermeiro { Nome = "Sílvia Correia", Telemovel = "967890123", UnidadeServico = "Enfermagem geral", Email = "silvia@gmail.com", CodPostal = "6300-210", NIF = "200121432", Morada = "Guarda", DataNascimento = new DateTime(1992, 05, 12), EnfermeiroID = 6 },
-                    new Enfermeiro { Nome = "Joana Pereira", Telemovel = "968901234", UnidadeServico = "Enfermagem médico-cirúrgica", Email = "joana@gmail.com", CodPostal = "6300-521", NIF = "200123000", Morada = "Guarda", DataNascimento = new DateTime(1992, 05, 12), EnfermeiroID = 7 },
-                    new Enfermeiro { Nome = "Ricardo Ramos", Telemovel = "969012345", UnidadeServico = "Enfermagem obstétrica", Email = "ricrdo@gmail.com", CodPostal = "6300-512", NIF = "200123001", Morada = "Guarda", DataNascimento = new DateTime(1992, 05, 12), EnfermeiroID = 8 },
-                    new Enfermeiro { Nome = "Nelson Duarte", Telemovel = "912345678", UnidadeServico = "Enfermagem Pediátrica", Email = "nelson@gmail.com", CodPostal = "6300-530", NIF = "200123123", Morada = "Guarda", DataNascimento = new DateTime(1992, 05, 12), EnfermeiroID = 9 },
-                    new Enfermeiro { Nome = "Luísa Rocha", Telemovel = "913456789", UnidadeServico = "Enfermagem psiquiátrica", Email = "luisa@gmail.com", CodPostal = "6300-538", NIF = "200123999", Morada = "Guarda", DataNascimento = new DateTime(1992, 05, 12), EnfermeiroID = 10, }
+                    new Enfermeiro { NumeroEnf = "E001", Nome = "Micael Santos", UnidadesServicos = geral.UnidadesServicos , Telemovel = "961234567", Email = "maria@gmail.com", DataNascimento = new DateTime(1992, 05, 12), NIF = "200123456", Filhos = false, DataNascimentoFilhos = null },
+                    new Enfermeiro { NumeroEnf = "E001", Nome = "Micael Santos", UnidadesServicos = geral.UnidadesServicos , Telemovel = "961234567", Email = "maria@gmail.com", DataNascimento = new DateTime(1992, 05, 12), NIF = "200123456", Filhos = true, DataNascimentoFilhos = new DateTime(2016, 7, 10) },
+                    new Enfermeiro { NumeroEnf = "E001", Nome = "Micael Santos", UnidadesServicos = geral.UnidadesServicos, Telemovel = "961234567", Email = "maria@gmail.com", DataNascimento = new DateTime(1992, 05, 12), NIF = "200123456", Filhos = true, DataNascimentoFilhos = new DateTime(2016, 7, 10) },
+                    new Enfermeiro { NumeroEnf = "E001", Nome = "Micael Santos", UnidadesServicos = geral.UnidadesServicos, Telemovel = "961234567", Email = "maria@gmail.com", DataNascimento = new DateTime(1992, 05, 12), NIF = "200123456", Filhos = true, DataNascimentoFilhos = new DateTime(2016, 7, 10) },
+                    new Enfermeiro { NumeroEnf = "E001", Nome = "Micael Santos", UnidadesServicos = geral.UnidadesServicos, Telemovel = "961234567", Email = "maria@gmail.com", DataNascimento = new DateTime(1992, 05, 12), NIF = "200123456", Filhos = false, DataNascimentoFilhos = null },
+                    new Enfermeiro { NumeroEnf = "E001", Nome = "Micael Santos", UnidadesServicos = geral.UnidadesServicos, Telemovel = "961234567", Email = "maria@gmail.com", DataNascimento = new DateTime(1992, 05, 12), NIF = "200123456", Filhos = true, DataNascimentoFilhos = new DateTime(2016, 7, 10) },
+                    new Enfermeiro { NumeroEnf = "E001", Nome = "Micael Santos", UnidadesServicos = geral.UnidadesServicos, Telemovel = "961234567", Email = "maria@gmail.com", DataNascimento = new DateTime(1992, 05, 12), NIF = "200123456", Filhos = true, DataNascimentoFilhos = new DateTime(2016, 7, 10) },
+                    new Enfermeiro { NumeroEnf = "E001", Nome = "Micael Santos", UnidadesServicos = geral.UnidadesServicos, Telemovel = "961234567", Email = "maria@gmail.com", DataNascimento = new DateTime(1992, 05, 12), NIF = "200123456", Filhos = true, DataNascimentoFilhos = new DateTime(2016, 7, 10) },
+                    new Enfermeiro { NumeroEnf = "E001", Nome = "Micael Santos", UnidadesServicos = geral.UnidadesServicos, Telemovel = "961234567", Email = "maria@gmail.com", DataNascimento = new DateTime(1992, 05, 12), NIF = "200123456", Filhos = false, DataNascimentoFilhos = null },
+                    new Enfermeiro { NumeroEnf = "E001", Nome = "Micael Santos", UnidadesServicos = geral.UnidadesServicos, Telemovel = "961234567", Email = "maria@gmail.com", DataNascimento = new DateTime(1992, 05, 12), NIF = "200123456", Filhos = true, DataNascimentoFilhos = new DateTime(2016, 7, 10), }
                     );
             db.SaveChanges();
+        }
+            private static UnidadesServico GetUnidadeServicoCreatingIfNeed(EscalonamentoHorarios_Grupo3DbContext db, string name)
+            {
+                UnidadesServico servico = db.UnidadesServicos.SingleOrDefault(c => c.Servico == name);
+
+                if (servico == null)
+                {
+                    servico = new UnidadesServico { Servico = name };
+                    db.Add(servico);
+                    db.SaveChanges();
+                }
+
+                return servico;
+            }
         }
     }
     
     
-}
+

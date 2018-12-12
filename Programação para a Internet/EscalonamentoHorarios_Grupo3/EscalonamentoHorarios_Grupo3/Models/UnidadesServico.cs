@@ -13,24 +13,23 @@ namespace EscalonamentoHorarios_Grupo3.Models
         [System.ComponentModel.DataAnnotations.Required(ErrorMessage = "Introduza o nome")]
         public int UnidadesServicoID { get; set; }
 
-        [Required]
-        public string Nome { get; set; }
+        [Required(ErrorMessage = "Introduza o nome para a unidade de serviço")]
+        [RegularExpression(@"([A-Za-záàâãéèêíïóôõöúçñÁÀÂÃÉÈÍÏÓÔÕÖÚÇÑ\s]+)", ErrorMessage = "Nome inválido")]
+        public string Servico { get; set; }
 
-        [Required]
-        public DateTime Horario { get; set; }
+        public int EnfermeiroID { get; set; }
 
-        [Required]
-        public DateTime AnosServico { get; set; }
+        public DateTime Data { get; set; }
 
-        [Required]
-        public string Turnos { get; set; }
 
-        [Required]
-        public string Enfermeiro { get; set; }
 
-       
+        public Enfermeiro Enfermeiro
+        { get; set; }
 
-        
 
+        public ICollection<Enfermeiro> Enfermeiros { get; set; }
+        public ICollection<UnidadesServico> UnidadesServicos { get; set; }
+
+
+        }
     }
-}
