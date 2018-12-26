@@ -1,17 +1,20 @@
-﻿@model EscalonamentoHorarios_Grupo3.Models.UnidadesServico
+﻿@model EscalonamentoHorarios_Grupo3.Models.EspecialidadeEnfermeiro
+
 @{
     ViewData["Title"] = "Alterar Especialidade";
 }
-<h2>Alterar a especialidade <b>@Html.DisplayFor(model => model.UnidadesServicos)</b></h2>
+
+<h2>Alterar a especialidade <b>@Html.DisplayFor(model => model.Especialidade)</b></h2>
+
 <hr />
 <div class="row">
     <div class="col-md-4">
         <form asp-action="Edit">
-            <input type="hidden" asp-for="UnidadesServicoID" />
+            <input type="hidden" asp-for="EspecialidadeEnfermeiroId" />
             <div class="form-group">
-                <label asp-for="UnidadesServicos" class="control-label">Nome da Especialidade</label>
-                <input asp-for="UnidadesServicos" class="form-control" />
-                <span asp-validation-for="UnidadesServicos" class="text-danger"></span>
+                <label asp-for="Especialidade" class="control-label">Nome da Especialidade</label>
+                <input asp-for="Especialidade" class="form-control" />
+                <span asp-validation-for="Especialidade" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <input type="submit" value="Guardar" class="btn btn-success" />
@@ -19,9 +22,11 @@
         </form>
     </div>
 </div>
+
 <div>
     <a asp-action="Index"> <input type="submit" value="Voltar à lista de especialidades" class="btn btn-default" /></a>
 </div>
+
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 }

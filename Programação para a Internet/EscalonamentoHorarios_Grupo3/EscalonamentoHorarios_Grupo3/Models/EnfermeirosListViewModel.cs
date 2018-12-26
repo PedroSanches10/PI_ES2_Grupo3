@@ -12,6 +12,11 @@ namespace EscalonamentoHorarios_Grupo3.Models
         public PagingViewModel Paginacao { get; set; }
 
         [DisplayName("Nome")]
-        public string CurrentName{ get; set; }
+        public string CurrentNome{ get; set; }
+
+        public IEnumerable<EnfermeiroEspecialidade> EnfermeirosEspecialidades { get; set; }
+        public PagingViewModel Pagination { get; set; }
+
+        public string CurrentName { get; set; }
     }
 }

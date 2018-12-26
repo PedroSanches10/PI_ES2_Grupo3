@@ -1,0 +1,75 @@
+﻿@model HistoricoEspecialidadesEnfermeiroViewModel
+
+@{
+    ViewData["Title"] = "Lista de Especialidades por Enfermeiro";
+}
+
+<h2>Lista de especialidades por enfermeiro</h2>
+
+@*
+    <p>
+        <a asp-action="Create">Create New</a>
+    </p>
+*@
+
+<form asp-action="Index">
+    <p style="float:right">
+        Pesquisar por nome: <input style="width: 200px;" asp-for="CurrentNome" placeholder="Insira o nome a pesquisar" />
+        <input type="submit" value="Pesquisar" class="btn btn-info" />
+    </p>
+</form>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Especialidade
+            </th>
+            <th>
+                Enfermeiro
+            </th>
+            <th>
+                Data de Registo
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.EnfermeirosEspecialidades)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.EspecialidadeEnfermeiro.Especialidade)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Enfermeiro.Nome)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Data_Registo)
+                </td>
+                @*
+                    <td>
+                        @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                        @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                        @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+                    </td>
+                *@
+            </tr>
+        }
+    </tbody>
+</table>
+
+<div page-model="@Model.Pagination"
+     page-action="Index"
+     page-classes-enabled="true"
+     page-class="btn"
+     page-class-normal="btn-default"
+     page-class-selected="btn-primary"
+     class="btn-group pull-right">
+</div>
+<hr />
+<div>
+    <a href='@Url.Action("GestaoHospitalar", "DiretorServico")'>
+        <input type="button" class="btn btn-default" value="Voltar à página inicial" />
+    </a>
+</div>

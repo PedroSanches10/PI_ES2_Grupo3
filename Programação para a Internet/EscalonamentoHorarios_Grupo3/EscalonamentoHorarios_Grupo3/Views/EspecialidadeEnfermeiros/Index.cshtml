@@ -1,7 +1,9 @@
-﻿@model IEnumerable<EscalonamentoHorarios_Grupo3.Models.UnidadesServico>
+﻿@model IEnumerable<EscalonamentoHorarios_Grupo3.Models.EspecialidadeEnfermeiro>
+
 @{
     ViewData["Title"] = "Lista de Especialidades dos Enfermeiros";
 }
+
 @if (TempData["successInsertEspecialidade"] != null)
 {
     <!--Mensagem de sucesso quandi insere especialidade-->
@@ -9,6 +11,7 @@
         <strong>Sucesso!</strong> O registo foi inserido com sucesso.
     </div>
 }
+
 @if (TempData["successEdit"] != null)
 {
     <!--Mensagem de sucesso quando edita especialidade-->
@@ -17,6 +20,7 @@
     </div>
 }
 
+
 @if (TempData["errorDelete"] != null)
 {
     <div id="suc_form" class="alert alert-danger">
@@ -24,18 +28,24 @@
     </div>
 }
 
+
 @if (TempData["successDelete"] != null)
 {
     <div id="suc_form" class="alert alert-success">
         <strong>Sucesso!</strong> Especialidade elimnada com sucesso.
     </div>
 }
+
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<script>//Passados 5 segundos a mensagem desaparece
+<script>
+    //Passados 5 segundos a mensagem desaparece
     $(document).ready(function () {
         $("#suc_form").hide(10000);
-    });</script>
+    });
+</script>
+
 <h2>Lista de especialidades dos enfermeiros</h2>
+
 <table class="table">
     <thead>
         <tr>
@@ -50,17 +60,18 @@
         {
             <tr>
                 <td>
-                    @Html.DisplayFor(modelItem => item.UnidadesServicos)
+                    @Html.DisplayFor(modelItem => item.Especialidade)
                 </td>
                 <td>
-                    <a asp-action="Edit" asp-route-id="@item.UnidadesServicoID"><input type="button" value="Editar" class="btn btn-warning" /></a>
-                    <!--<a asp-action="Details" asp-route-id="@item.UnidadesServicoID">Details</a> |-->
-                    <a asp-action="Delete" asp-route-id="@item.UnidadesServicoID"><input type="button" value="Eliminar" class="btn btn-danger" /></a>
+                    <a asp-action="Edit" asp-route-id="@item.EspecialidadeEnfermeiroId"><input type="button" value="Editar" class="btn btn-warning" /></a>
+                    <!--<a asp-action="Details" asp-route-id="@item.EspecialidadeEnfermeiroId">Details</a> |-->
+                    <a asp-action="Delete" asp-route-id="@item.EspecialidadeEnfermeiroId"><input type="button" value="Eliminar" class="btn btn-danger" /></a>
                 </td>
             </tr>
         }
     </tbody>
 </table>
+
 <br />
 <hr />
 <p>

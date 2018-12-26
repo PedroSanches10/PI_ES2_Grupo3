@@ -9,10 +9,11 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using EscalonamentoHorarios_Grupo3.Models;
+using EscalonamentoHorarios_Grupo3.Data;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using EscalonamentoHorarios_Grupo3.Data;
+using EscalonamentoHorarios_Grupo3.Models;
+using SeedData = EscalonamentoHorarios_Grupo3.Data.SeedData;
 
 namespace EscalonamentoHorarios_Grupo3
 {

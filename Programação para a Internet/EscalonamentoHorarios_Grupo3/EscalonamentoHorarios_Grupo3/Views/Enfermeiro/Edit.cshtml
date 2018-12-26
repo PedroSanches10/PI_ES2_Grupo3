@@ -3,17 +3,17 @@
     ViewData["Title"] = "Alterar";
 }
 <body onload="showForm()">
-</body> @*onload="showForm()" : Verifica se o campo DataNascimentoFilhos está a true. Se estiver mostra a div da data*@
+</body> @*onload="showForm()" : Verifica se o campo Data_Nascimento_Filho está a true. Se estiver mostra a div da data*@
 <h2>Alterar o/a Enfermeiro/a <b>@Html.DisplayFor(model => model.Nome)</b></h2>
 <hr />
 <div class="row">
     <div class="col-md-4">
         <form asp-action="Edit">
-            <input type="hidden" asp-for="EnfermeiroID" />
+            <input type="hidden" asp-for="EnfermeiroId"/>
             <div class="form-group">
-                <label asp-for="NumeroEnf" class="control-label">Número Mecanográfico</label>
-                <input asp-for="NumeroEnf" class="form-control" placeholder="p. ex. E12345" />
-                <span asp-validation-for="NumeroEnf" class="text-danger"></span>
+                <label asp-for="NumeroMecanografico" class="control-label">Número Mecanográfico</label>
+                <input asp-for="NumeroMecanografico" class="form-control" placeholder="p. ex. E12345" />
+                <span asp-validation-for="NumeroMecanografico" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Nome" class="control-label">Nome</label>
@@ -21,14 +21,14 @@
                 <span asp-validation-for="Nome" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="UnidadesServicos" class="control-label">Especialidade</label>
-                <select asp-for="UnidadesServicos" class="form-control" asp-items="ViewBag.EspecialidadeEnfermeiroId"></select>
-                <span asp-validation-for="UnidadesServicos" class="text-danger"></span>
+                <label asp-for="EspecialidadeEnfermeiroId" class="control-label">Especialidade</label>
+                <select asp-for="EspecialidadeEnfermeiroId" class="form-control" asp-items="ViewBag.EspecialidadeEnfermeiroId"></select>
+                <span asp-validation-for="EspecialidadeEnfermeiroId" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Telemovel" class="control-label">Contacto</label>
-                <input asp-for="Telemovel" class="form-control" />
-                <span asp-validation-for="Telemovel" class="text-danger"></span>
+                <label asp-for="Contacto" class="control-label">Contacto</label>
+                <input asp-for="Contacto" class="form-control" />
+                <span asp-validation-for="Contacto" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Email" class="control-label">Email</label>
@@ -36,14 +36,14 @@
                 <span asp-validation-for="Email" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="DataNascimento" class="control-label">Data de Nascimento</label>
-                <input asp-for="DataNascimento" class="form-control" />
-                <span asp-validation-for="DataNascimento" class="text-danger"></span>
+                <label asp-for="Data_Nascimento" class="control-label">Data de Nascimento</label>
+                <input asp-for="Data_Nascimento" class="form-control" />
+                <span asp-validation-for="Data_Nascimento" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="NIF" class="control-label">Nº Cartão Cidadão</label>
-                <input asp-for="NIF" class="form-control" placeholder="p. ex. 12345678 5ZY9" />
-                <span asp-validation-for="NIF" class="text-danger"></span>
+                <label asp-for="CC" class="control-label">Nº Cartão Cidadão</label>
+                <input asp-for="CC" class="form-control" placeholder="p. ex. 12345678 5ZY9" />
+                <span asp-validation-for="CC" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Filhos" class="control-label">Tem filhos?</label>
@@ -52,7 +52,8 @@
                     <option value="true">Sim</option>
                 </select>
             </div>
-            <script type="text/javascript">//Algoritmo:
+            <script type="text/javascript">
+                //Algoritmo:
                 //Se o utilizador selecionou a opcao "SIM" então
                 //mostrar datebox para inserir data de nascimento
                 function showForm() {
@@ -69,11 +70,12 @@
                         var form = document.getElementById("formDate");
                         form.style.display = 'none';
                     }
-                }</script>
+                }
+            </script>
             <div class="form-group" id="formDate" style="display: none;">
-                <label asp-for="DataNascimentoFilhos" class="control-label">Data de Nascimento filho mais novo</label>
-                <input asp-for="DataNascimentoFilhos" class="form-control" />
-                <span asp-validation-for="DataNascimentoFilhos" class="text-danger"></span>
+                <label asp-for="Data_Nascimento_Filho" class="control-label">Data de Nascimento filho mais novo</label>
+                <input asp-for="Data_Nascimento_Filho" class="form-control" />
+                <span asp-validation-for="Data_Nascimento_Filho" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <input type="submit" value="Guardar" class="btn btn-success" />

@@ -10,7 +10,7 @@
             Número Mecanográfico
         </dt>
         <dd>
-            @Html.DisplayFor(model => model.NumeroEnf)
+            @Html.DisplayFor(model => model.NumeroMecanografico)
         </dd>
         <dt>
             Nome
@@ -22,13 +22,13 @@
             Especialidade
         </dt>
         <dd>
-            @Html.DisplayFor(model => model.UnidadesServico.UnidadesServicoID)
+            @Html.DisplayFor(model => model.EspecialidadeEnfermeiro.Especialidade)
         </dd>
         <dt>
             Contacto
         </dt>
         <dd>
-            @Html.DisplayFor(model => model.Telemovel)
+            @Html.DisplayFor(model => model.Contacto)
         </dd>
         <dt>
             Email
@@ -40,13 +40,13 @@
             Data de Nascimento
         </dt>
         <dd>
-            @Html.DisplayFor(model => model.DataNascimento)
+            @Html.DisplayFor(model => model.Data_Nascimento)
         </dd>
         <dt>
             Nº Cartão Cidadão
         </dt>
         <dd>
-            @Html.DisplayFor(model => model.NIF)
+            @Html.DisplayFor(model => model.CC)
         </dd>
         <dt>
             Filhos
@@ -66,12 +66,12 @@
                 Data de Nascimento do filho mais novo
             </dt>
             <dd>
-                @Html.DisplayFor(model => model.DataNascimentoFilhos)
+                @Html.DisplayFor(model => model.Data_Nascimento_Filho)
             </dd>
         }
     </dl>
 </div>
 <div>
-    <a asp-action="Edit" asp-route-id="@Model.EnfermeiroID"><input type="button" value="Editar" class="btn btn-warning" /></a>
+    <a asp-action="Edit" asp-route-id="@Model.EnfermeiroId"><input type="button" value="Editar" class="btn btn-warning" /></a>
     <a asp-action="Index"><input type="button" value="Voltar à lista de enfermeiros" class="btn btn-default" /></a>
 </div>

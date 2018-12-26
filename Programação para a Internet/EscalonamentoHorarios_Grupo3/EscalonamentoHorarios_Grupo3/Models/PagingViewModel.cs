@@ -7,9 +7,9 @@ namespace EscalonamentoHorarios_Grupo3.Models
 {
     public class PagingViewModel
     {
-        public int Totaltems { get; set; }
+        public int TotalItems { get; set; }
         public int PageSize { get; set; }
         public int CurrentPage { get; set; }
-        public int NumberPages => (int)Math.Ceiling((double)Totaltems / PageSize);
+        public int NumberPages => (int)Math.Ceiling((double)TotalItems / PageSize);
     }
 }

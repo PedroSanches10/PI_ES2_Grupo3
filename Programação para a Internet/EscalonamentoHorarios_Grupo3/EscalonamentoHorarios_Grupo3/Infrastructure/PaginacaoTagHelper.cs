@@ -2,19 +2,19 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using EscalonamentoHorarios_Grupo3.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.AspNetCore.Mvc.Routing;
 using Microsoft.AspNetCore.Mvc.ViewFeatures;
 using Microsoft.AspNetCore.Razor.Runtime.TagHelpers;
 using Microsoft.AspNetCore.Razor.TagHelpers;
-using EscalonamentoHorarios_Grupo3.Models;
 
-namespace EscalonamentoHorarios_Grupo3.Infrastructure
+namespace EscalonamentoHospitalar.Infrastructure
 {
     // You may need to install the Microsoft.AspNetCore.Razor.Runtime package into your project
     [HtmlTargetElement("div", Attributes = "page-model")]
-    public class PaginacaoTagHelper : TagHelper
+    public class PaginationTagHelper : TagHelper
     {
         private readonly int MaxPageLinks = 10;
 
@@ -22,13 +22,19 @@ namespace EscalonamentoHorarios_Grupo3.Infrastructure
 
         public string PageAction { get; set; }
 
+        //Adding Classes to Generated Elements in the RazorTagHelper.cs File
+        public bool PageClassesEnabled { get; set; } = false;
+        public string PageClass { get; set; }
+        public string PageClassNormal { get; set; }
+        public string PageClassSelected { get; set; }
+
         private IUrlHelperFactory urlHelperFactory;
 
         [ViewContext]
         [HtmlAttributeNotBound]
         public ViewContext ViewContext { get; set; }
 
-        public PaginacaoTagHelper(IUrlHelperFactory urlHelperFactory)
+        public PaginationTagHelper(IUrlHelperFactory urlHelperFactory)
         {
             this.urlHelperFactory = urlHelperFactory;
         }
@@ -59,6 +65,12 @@ namespace EscalonamentoHorarios_Grupo3.Infrastructure
                 else
                 {
                     link.AddCssClass("btn-default");
+                }
+
+                if (PageClassesEnabled)
+                {
+                    link.AddCssClass(PageClass);
+                    link.AddCssClass(p == PageModel.CurrentPage ? PageClassSelected : PageClassNormal);
                 }
 
                 link.InnerHtml.Append(p.ToString());

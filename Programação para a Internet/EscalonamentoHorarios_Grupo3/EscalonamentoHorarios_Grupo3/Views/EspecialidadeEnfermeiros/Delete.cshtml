@@ -1,12 +1,14 @@
-﻿@model EscalonamentoHorarios_Grupo3.Models.UnidadesServico
+﻿@model EscalonamentoHorarios_Grupo3.Models.EspecialidadeEnfermeiro
+
 @{
     ViewData["Title"] = "Eliminar";
 }
+
 <head>
     <!--icon-->
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-    <style type="text/css">
 
+    <style type="text/css">
         body {
             font-family: 'Varela Round', sans-serif;
         }
@@ -111,9 +113,12 @@
         }
     </style>
 </head>
+
 <body>
+
     <h2>Eliminar Especialidade de <b>Enfermeiros</b></h2>
-    <h3>Tem a certeza de que pretende eliminar a especialidade <b></b>?</h3>
+
+    <h3>Tem a certeza de que pretende eliminar a especialidade <b>@Html.DisplayFor(model => model.Especialidade)</b>?</h3>
     <div>
         <hr />
         <dl class="dl-horizontal">
@@ -121,17 +126,19 @@
                 Especialidade
             </dt>
             <dd>
-                @Html.DisplayFor(model => model.UnidadesServicos)
+                @Html.DisplayFor(model => model.Especialidade)
             </dd>
         </dl>
+
         <form asp-action="Delete">
-            <input type="hidden" asp-for="UnidadesServicoID" />
+            <input type="hidden" asp-for="EspecialidadeEnfermeiroId" />
             <a href="#myDeleteModal" class="trigger-btn" data-toggle="modal">
                 <input type="submit" value="Eliminar" class="btn btn-danger" />
             </a>
             <a asp-action="Index"> <input type="submit" value="Voltar à lista de especialidades" class="btn btn-default" /></a>
         </form>
     </div>
+
     <!-- Modal HTML Delete | Confirmar a eliminação permanente de uma especialidade de um enfermeiro-->
     <div id="myDeleteModal" class="modal fade">
         <div class="modal-dialog modal-confirm">
@@ -140,17 +147,17 @@
                     <div class="icon-box">
                         <i class="material-icons">&#xE5CD;</i>
                     </div>
-                    <h4 class="modal-title">Vai eliminar permanentemente a especialidade <b>@Html.DisplayFor(model => model.UnidadesServicos)</b>.</h4>
+                    <h4 class="modal-title">Vai eliminar permanentemente a especialidade <b>@Html.DisplayFor(model => model.Especialidade)</b>.</h4>
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                 </div>
                 <div class="modal-body">
-                    <p>Certifique-se de que a especialidade <b>@Html.DisplayFor(model => model.UnidadesServicos)</b> não tem enfermeiros atribuídos, caso contrário, não é possível eliminá-la.</p>
+                    <p>Certifique-se de que a especialidade <b>@Html.DisplayFor(model => model.Especialidade)</b> não tem enfermeiros atribuídos, caso contrário, não é possível eliminá-la.</p>
                     <p>Tem a certeza? Esta operação é irreversível.</p>
                 </div>
                 <div class="modal-footer">
                     <form asp-action="Delete">
                         <button type="button" class="btn btn-info" data-dismiss="modal">Cancelar</button>
-                        <input type="hidden" asp-for="UnidadesServicoID" />
+                        <input type="hidden" asp-for="EspecialidadeEnfermeiroId" />
                         <input type="submit" class="btn btn-danger" value="Eliminar" />
                     </form>
                 </div>

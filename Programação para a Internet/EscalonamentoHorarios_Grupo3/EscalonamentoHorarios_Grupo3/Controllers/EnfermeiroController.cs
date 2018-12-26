@@ -26,7 +26,7 @@ namespace EscalonamentoHorarios_Grupo3.Controllers
 
             if (model != null)
             {
-                category = model.CurrentName;
+                category = model.CurrentNome;
                 page = 1;
             }
 
@@ -54,9 +54,9 @@ namespace EscalonamentoHorarios_Grupo3.Controllers
                     {
                         CurrentPage = page,
                         PageSize = PAGE_SIZE,
-                        Totaltems = numEnfermeiros
+                        TotalItems = numEnfermeiros
                     },
-                    CurrentName = category
+                    CurrentNome = category
                 }
             );
         }
@@ -71,7 +71,7 @@ namespace EscalonamentoHorarios_Grupo3.Controllers
             }
 
             var product = await _context.Enfermeiros
-                .FirstOrDefaultAsync(p => p.EnfermeiroID == id);
+                .FirstOrDefaultAsync(p => p.EnfermeiroId == id);
 
             if (product == null)
             {
@@ -130,7 +130,7 @@ namespace EscalonamentoHorarios_Grupo3.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("ProductId,Name,Description,Price,Category")] Enfermeiro enfermeiro)
         {
-            if (id != enfermeiro.EnfermeiroID)
+            if (id != enfermeiro.EnfermeiroId)
             {
                 // todo: inform user ...
                 return NotFound();
@@ -148,7 +148,7 @@ namespace EscalonamentoHorarios_Grupo3.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!ProductExists(enfermeiro.EnfermeiroID))
+                if (!ProductExists(enfermeiro.EnfermeiroId))
                 {
                     // todo: show an error message, decide what to do ...
                     return NotFound();
@@ -173,7 +173,7 @@ namespace EscalonamentoHorarios_Grupo3.Controllers
             }
 
             var product = await _context.Enfermeiros
-                .FirstOrDefaultAsync(p => p.EnfermeiroID == id);
+                .FirstOrDefaultAsync(p => p.EnfermeiroId == id);
 
             if (product == null)
             {
@@ -203,7 +203,7 @@ namespace EscalonamentoHorarios_Grupo3.Controllers
 
         private bool ProductExists(int id)
         {
-            return _context.Enfermeiros.Any(p => p.EnfermeiroID == id);
+            return _context.Enfermeiros.Any(p => p.EnfermeiroId == id);
         }
     }
 }

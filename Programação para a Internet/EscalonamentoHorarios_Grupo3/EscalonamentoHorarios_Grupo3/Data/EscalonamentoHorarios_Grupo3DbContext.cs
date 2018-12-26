@@ -14,27 +14,33 @@ namespace EscalonamentoHorarios_Grupo3.Models
         {
         }
 
-        /*protected override void OnModelCreating(ModelBuilder modelBuilder)
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             //Chave primária composta
-            modelBuilder.Entity<UnidadesServico>().HasKey(o => new { o.EnfermeiroID, o.UnidadesServicoID
-    });
+            modelBuilder.Entity<EnfermeiroEspecialidade>().HasKey(o => new { o.EnfermeiroId, o.EspecialidadeEnfermeiroId });
 
             //Relação 1 -> N
-            modelBuilder.Entity<Enfermeiro>()
-                .HasOne(ee => ee.UnidadesServicos)
-                .WithMany(e => e.E)
-                .HasForeignKey(ee => ee.EnfermeiroID)
+            modelBuilder.Entity<EnfermeiroEspecialidade>()
+                .HasOne(ee => ee.Enfermeiro)
+                .WithMany(e => e.EnfermeirosEspecialidade)
+                .HasForeignKey(ee => ee.EnfermeiroId)
                 .OnDelete(DeleteBehavior.Cascade);
 
-    
+            modelBuilder.Entity<EnfermeiroEspecialidade>()
+                .HasOne(ee => ee.EspecialidadeEnfermeiro)
+                .WithMany(e => e.EnfermeirosEspecialidade)
+                .HasForeignKey(ee => ee.EspecialidadeEnfermeiroId)
+                .OnDelete(DeleteBehavior.ClientSetNull);
 
             base.OnModelCreating(modelBuilder);
-}*/
+        }
 
-public DbSet<EscalonamentoHorarios_Grupo3.Models.Enfermeiro> Enfermeiros { get; set; }
 
-        public DbSet<EscalonamentoHorarios_Grupo3.Models.UnidadesServico> UnidadesServicos { get; set; }
+        public DbSet<EscalonamentoHorarios_Grupo3.Models.Enfermeiro> Enfermeiros { get; set; }
+
+        public DbSet<EscalonamentoHorarios_Grupo3.Models.EnfermeiroEspecialidade> EnfermeirosEspecialidades { get; set; }
+
+        public DbSet<EscalonamentoHorarios_Grupo3.Models.EspecialidadeEnfermeiro> EspecialidadesEnfermeiros { get; set; }
     }
 }
 

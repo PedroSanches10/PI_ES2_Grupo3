@@ -1,4 +1,4 @@
-﻿@*@model IEnumerable<EscalonamentoHorarios_Grupo3.Models.Enfermeiro>*@
+﻿@*@model IEnumerable<EscalonamentoHorarios_Grupo3DbContext.Models.Enfermeiro>*@
 @model EnfermeirosListViewModel
 @{
     ViewData["Title"] = "Lista de Enfermeiros";
@@ -6,7 +6,7 @@
 <p></p>
 @if (TempData["notice"] != null)
 {
-    <!--Mensagem de sucesso quando insere enfermeiro-->
+    <!--Mensagem de sucesso quandi insere enfermeiro-->
     <div id="suc_form" class="alert alert-success">
         <strong>Sucesso!</strong> O registo foi inserido com sucesso.
     </div>
@@ -36,7 +36,7 @@
 <h2>Lista de Enfermeiros</h2>
 <form asp-action="Index">
     <p style="float: right">
-        Pesquisar por nome: <input style="width: 200px;" asp-for="CurrentName" placeholder="Insira o nome a pesquisar" />
+        Pesquisar por nome: <input style="width: 200px;" asp-for="CurrentNome" placeholder="Insira o nome a pesquisar" />
         <input type="submit" value="Pesquisar" class="btn btn-info" />
     </p>
 </form>
@@ -61,18 +61,18 @@
         {
             <tr>
                 <td>
-                    @Html.DisplayFor(modelItem => item.NumeroEnf)
+                    @Html.DisplayFor(modelItem => item.NumeroMecanografico)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.Nome)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.UnidadesServico.UnidadesServicoID)
+                    @Html.DisplayFor(modelItem => item.EspecialidadeEnfermeiro.Especialidade)
                 </td>
                 <td>
-                    <a asp-action="Edit" asp-route-id="@item.EnfermeiroID"><input type="button" value="Editar" class="btn btn-warning" /></a>
-                    <a asp-action="Details" asp-route-id="@item.EnfermeiroID"><input type="button" value="Detalhes" class="btn btn-info" /></a>
-                    <a asp-action="Delete" asp-route-id="@item.EnfermeiroID"><input type="button" value="Eliminar" class="btn btn-danger" /></a>
+                    <a asp-action="Edit" asp-route-id="@item.EnfermeiroId"><input type="button" value="Editar" class="btn btn-warning" /></a>
+                    <a asp-action="Details" asp-route-id="@item.EnfermeiroId"><input type="button" value="Detalhes" class="btn btn-info" /></a>
+                    <a asp-action="Delete" asp-route-id="@item.EnfermeiroId"><input type="button" value="Eliminar" class="btn btn-danger" /></a>
                 </td>
             </tr>
         }
