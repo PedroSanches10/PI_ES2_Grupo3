@@ -17,8 +17,8 @@ namespace EscalonamentoHorarios_Grupo3.Data
         public static void Enfermeiro(EscalonamentoHorarios_Grupo3DbContext db)
         {
             SeedEnfermeiros(db);
-            SeedEspecialidadeEnfermeiros(db);
-            SeedEnfermeiroEspecialidade(db);
+            //SeedEspecialidadeEnfermeiros(db);
+            //SeedEnfermeiroEspecialidade(db);
 
         }
 
@@ -70,7 +70,7 @@ namespace EscalonamentoHorarios_Grupo3.Data
         }
 
 
-        private static void SeedEspecialidadeEnfermeiros(EscalonamentoHorarios_Grupo3DbContext db)
+        /*private static void SeedEspecialidadeEnfermeiros(EscalonamentoHorarios_Grupo3DbContext db)
         {
             if (db.EspecialidadesEnfermeiros.Any()) return;
 
@@ -86,9 +86,9 @@ namespace EscalonamentoHorarios_Grupo3.Data
                 );
 
             db.SaveChanges();
-        }
+        }*/
 
-        private static void SeedEnfermeiroEspecialidade(EscalonamentoHorarios_Grupo3DbContext db)
+        /*private static void SeedEnfermeiroEspecialidade(EscalonamentoHorarios_Grupo3DbContext db)
         {
             if (db.EnfermeirosEspecialidades.Any()) return;
 
@@ -132,7 +132,7 @@ namespace EscalonamentoHorarios_Grupo3.Data
             db.EnfermeirosEspecialidades.Add(new EnfermeiroEspecialidade { EspecialidadeEnfermeiroId = especialidade.EspecialidadeEnfermeiroId, EnfermeiroId = enfermeiro.EnfermeiroId, Data_Registo = new DateTime(2018, 11, 16) });
 
             db.SaveChanges();
-        }
+        }*/
 
         private static void SeedEnfermeiros(EscalonamentoHorarios_Grupo3DbContext db)
         {
