@@ -41,6 +41,10 @@ namespace EscalonamentoHorarios_Grupo3.Models
         public DbSet<EscalonamentoHorarios_Grupo3.Models.EnfermeiroEspecialidade> EnfermeirosEspecialidades { get; set; }
 
         public DbSet<EscalonamentoHorarios_Grupo3.Models.EspecialidadeEnfermeiro> EspecialidadesEnfermeiros { get; set; }
+
+        public DbSet<EscalonamentoHorarios_Grupo3.Models.HorarioEnfermeiro> HorariosEnfermeiro { get; set; }
+
+        public DbSet<EscalonamentoHorarios_Grupo3.Models.Turno> Turnos { get; set; }
     }
 }
 

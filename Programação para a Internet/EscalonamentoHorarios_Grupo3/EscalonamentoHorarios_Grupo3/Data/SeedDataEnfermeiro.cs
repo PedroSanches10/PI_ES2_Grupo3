@@ -17,8 +17,10 @@ namespace EscalonamentoHorarios_Grupo3.Data
         public static void Enfermeiro(EscalonamentoHorarios_Grupo3DbContext db)
         {
             SeedEnfermeiros(db);
-            //SeedEspecialidadeEnfermeiros(db);
-            //SeedEnfermeiroEspecialidade(db);
+            SeedEspecialidadeEnfermeiros(db);
+            SeedEnfermeiroEspecialidade(db);
+            SeedTurnos(db);
+            SeedHorarioEnfermeiros(db);
 
         }
 
@@ -70,7 +72,7 @@ namespace EscalonamentoHorarios_Grupo3.Data
         }
 
 
-        /*private static void SeedEspecialidadeEnfermeiros(EscalonamentoHorarios_Grupo3DbContext db)
+        private static void SeedEspecialidadeEnfermeiros(EscalonamentoHorarios_Grupo3DbContext db)
         {
             if (db.EspecialidadesEnfermeiros.Any()) return;
 
@@ -86,9 +88,9 @@ namespace EscalonamentoHorarios_Grupo3.Data
                 );
 
             db.SaveChanges();
-        }*/
+        }
 
-        /*private static void SeedEnfermeiroEspecialidade(EscalonamentoHorarios_Grupo3DbContext db)
+        private static void SeedEnfermeiroEspecialidade(EscalonamentoHorarios_Grupo3DbContext db)
         {
             if (db.EnfermeirosEspecialidades.Any()) return;
 
@@ -132,7 +134,7 @@ namespace EscalonamentoHorarios_Grupo3.Data
             db.EnfermeirosEspecialidades.Add(new EnfermeiroEspecialidade { EspecialidadeEnfermeiroId = especialidade.EspecialidadeEnfermeiroId, EnfermeiroId = enfermeiro.EnfermeiroId, Data_Registo = new DateTime(2018, 11, 16) });
 
             db.SaveChanges();
-        }*/
+        }
 
         private static void SeedEnfermeiros(EscalonamentoHorarios_Grupo3DbContext db)
         {
@@ -176,6 +178,126 @@ namespace EscalonamentoHorarios_Grupo3.Data
             }
 
             return especialidade;
+        }
+        private static void SeedHorarioEnfermeiros(EscalonamentoHorarios_Grupo3DbContext db)
+        {
+            if (db.HorariosEnfermeiro.Any()) return;
+
+            Turno turno1 = db.Turnos.SingleOrDefault(t => t.Nome == "MANHÃ");
+            Turno turno2 = db.Turnos.SingleOrDefault(t => t.Nome == "TARDE");
+            Turno turno3 = db.Turnos.SingleOrDefault(t => t.Nome == "NOITE");
+
+            DateTime dataInicioT1 = new DateTime(2018, 11, 21, 8, 0, 0);
+            DateTime dataInicioT1CFilhos = new DateTime(2018, 11, 21, 9, 0, 0);
+            DateTime dataInicioT2 = new DateTime(2018, 11, 21, 16, 0, 0);
+            DateTime dataInicioT3 = new DateTime(2018, 11, 22, 0, 0, 0);
+
+            Enfermeiro enfermeiro1 = db.Enfermeiros.SingleOrDefault(e => e.Nome == "Marisa Reduto");
+            Enfermeiro enfermeiro2 = db.Enfermeiros.SingleOrDefault(e => e.Nome == "João Silva"); //Com Filho
+            Enfermeiro enfermeiro3 = db.Enfermeiros.SingleOrDefault(e => e.Nome == "Armando Manso"); //Com Filho
+            Enfermeiro enfermeiro4 = db.Enfermeiros.SingleOrDefault(e => e.Nome == "Andreia Cunha");
+            Enfermeiro enfermeiro5 = db.Enfermeiros.SingleOrDefault(e => e.Nome == "Joana Albuquerque");
+            Enfermeiro enfermeiro6 = db.Enfermeiros.SingleOrDefault(e => e.Nome == "João Tomás");
+            Enfermeiro enfermeiro7 = db.Enfermeiros.SingleOrDefault(e => e.Nome == "Carlos Manso");
+            Enfermeiro enfermeiro8 = db.Enfermeiros.SingleOrDefault(e => e.Nome == "Bruno Martins");
+            Enfermeiro enfermeiro9 = db.Enfermeiros.SingleOrDefault(e => e.Nome == "Ariana Gonçalves");
+            Enfermeiro enfermeiro10 = db.Enfermeiros.SingleOrDefault(e => e.Nome == "André Silva");
+            Enfermeiro enfermeiro11 = db.Enfermeiros.SingleOrDefault(e => e.Nome == "Carlos Almeida"); //Com Filho
+            Enfermeiro enfermeiro12 = db.Enfermeiros.SingleOrDefault(e => e.Nome == "Fábio Castro"); //Com Filho
+
+            //2 feira
+            db.HorariosEnfermeiro.Add(new HorarioEnfermeiro { DataInicioTurno = dataInicioT1CFilhos, Duracao = 8, DataFimTurno = dataInicioT1CFilhos.AddHours(8), TurnoId = turno1.TurnoId, EnfermeiroId = enfermeiro12.EnfermeiroId });
+            db.HorariosEnfermeiro.Add(new HorarioEnfermeiro { DataInicioTurno = dataInicioT1, Duracao = 8, DataFimTurno = dataInicioT1.AddHours(8), TurnoId = turno1.TurnoId, EnfermeiroId = enfermeiro8.EnfermeiroId });
+            db.HorariosEnfermeiro.Add(new HorarioEnfermeiro { DataInicioTurno = dataInicioT1CFilhos, Duracao = 8, DataFimTurno = dataInicioT1CFilhos.AddHours(8), TurnoId = turno1.TurnoId, EnfermeiroId = enfermeiro2.EnfermeiroId });
+            db.HorariosEnfermeiro.Add(new HorarioEnfermeiro { DataInicioTurno = dataInicioT1, Duracao = 8, DataFimTurno = dataInicioT1.AddHours(8), TurnoId = turno1.TurnoId, EnfermeiroId = enfermeiro6.EnfermeiroId });
+            db.HorariosEnfermeiro.Add(new HorarioEnfermeiro { DataInicioTurno = dataInicioT1CFilhos, Duracao = 8, DataFimTurno = dataInicioT1CFilhos.AddHours(8), TurnoId = turno1.TurnoId, EnfermeiroId = enfermeiro3.EnfermeiroId });
+            db.HorariosEnfermeiro.Add(new HorarioEnfermeiro { DataInicioTurno = dataInicioT2, Duracao = 8, DataFimTurno = dataInicioT2.AddHours(8), TurnoId = turno2.TurnoId, EnfermeiroId = enfermeiro11.EnfermeiroId });
+            db.HorariosEnfermeiro.Add(new HorarioEnfermeiro { DataInicioTurno = dataInicioT2, Duracao = 8, DataFimTurno = dataInicioT2.AddHours(8), TurnoId = turno2.TurnoId, EnfermeiroId = enfermeiro10.EnfermeiroId });
+            db.HorariosEnfermeiro.Add(new HorarioEnfermeiro { DataInicioTurno = dataInicioT2, Duracao = 8, DataFimTurno = dataInicioT2.AddHours(8), TurnoId = turno2.TurnoId, EnfermeiroId = enfermeiro9.EnfermeiroId });
+            db.HorariosEnfermeiro.Add(new HorarioEnfermeiro { DataInicioTurno = dataInicioT3, Duracao = 8, DataFimTurno = dataInicioT3.AddHours(8), TurnoId = turno3.TurnoId, EnfermeiroId = enfermeiro7.EnfermeiroId });
+            db.HorariosEnfermeiro.Add(new HorarioEnfermeiro { DataInicioTurno = dataInicioT3, Duracao = 8, DataFimTurno = dataInicioT3.AddHours(8), TurnoId = turno3.TurnoId, EnfermeiroId = enfermeiro4.EnfermeiroId });
+
+            //3 feira
+            dataInicioT1 = new DateTime(2018, 11, 22, 8, 0, 0);
+            dataInicioT1CFilhos = new DateTime(2018, 11, 22, 9, 0, 0);
+            dataInicioT2 = new DateTime(2018, 11, 22, 16, 0, 0);
+            dataInicioT3 = new DateTime(2018, 11, 23, 0, 0, 0);
+
+            db.HorariosEnfermeiro.Add(new HorarioEnfermeiro { DataInicioTurno = dataInicioT1CFilhos, Duracao = 8, DataFimTurno = dataInicioT1CFilhos.AddHours(8), TurnoId = turno1.TurnoId, EnfermeiroId = enfermeiro3.EnfermeiroId });
+            db.HorariosEnfermeiro.Add(new HorarioEnfermeiro { DataInicioTurno = dataInicioT1, Duracao = 8, DataFimTurno = dataInicioT1.AddHours(8), TurnoId = turno1.TurnoId, EnfermeiroId = enfermeiro5.EnfermeiroId });
+            db.HorariosEnfermeiro.Add(new HorarioEnfermeiro { DataInicioTurno = dataInicioT1CFilhos, Duracao = 8, DataFimTurno = dataInicioT1CFilhos.AddHours(8), TurnoId = turno1.TurnoId, EnfermeiroId = enfermeiro12.EnfermeiroId });
+            db.HorariosEnfermeiro.Add(new HorarioEnfermeiro { DataInicioTurno = dataInicioT1, Duracao = 8, DataFimTurno = dataInicioT1.AddHours(8), TurnoId = turno1.TurnoId, EnfermeiroId = enfermeiro9.EnfermeiroId });
+            db.HorariosEnfermeiro.Add(new HorarioEnfermeiro { DataInicioTurno = dataInicioT1CFilhos, Duracao = 8, DataFimTurno = dataInicioT1CFilhos.AddHours(8), TurnoId = turno1.TurnoId, EnfermeiroId = enfermeiro11.EnfermeiroId });
+            db.HorariosEnfermeiro.Add(new HorarioEnfermeiro { DataInicioTurno = dataInicioT2, Duracao = 8, DataFimTurno = dataInicioT2.AddHours(8), TurnoId = turno2.TurnoId, EnfermeiroId = enfermeiro2.EnfermeiroId });
+            db.HorariosEnfermeiro.Add(new HorarioEnfermeiro { DataInicioTurno = dataInicioT2, Duracao = 8, DataFimTurno = dataInicioT2.AddHours(8), TurnoId = turno2.TurnoId, EnfermeiroId = enfermeiro1.EnfermeiroId });
+            db.HorariosEnfermeiro.Add(new HorarioEnfermeiro { DataInicioTurno = dataInicioT2, Duracao = 8, DataFimTurno = dataInicioT2.AddHours(8), TurnoId = turno2.TurnoId, EnfermeiroId = enfermeiro6.EnfermeiroId });
+            db.HorariosEnfermeiro.Add(new HorarioEnfermeiro { DataInicioTurno = dataInicioT3, Duracao = 8, DataFimTurno = dataInicioT3.AddHours(8), TurnoId = turno3.TurnoId, EnfermeiroId = enfermeiro10.EnfermeiroId });
+            db.HorariosEnfermeiro.Add(new HorarioEnfermeiro { DataInicioTurno = dataInicioT3, Duracao = 8, DataFimTurno = dataInicioT3.AddHours(8), TurnoId = turno3.TurnoId, EnfermeiroId = enfermeiro4.EnfermeiroId });
+
+            //4 feira
+            dataInicioT1 = new DateTime(2018, 11, 23, 8, 0, 0);
+            dataInicioT1CFilhos = new DateTime(2018, 11, 23, 9, 0, 0);
+            dataInicioT2 = new DateTime(2018, 11, 23, 16, 0, 0);
+            dataInicioT3 = new DateTime(2018, 11, 24, 0, 0, 0);
+
+            db.HorariosEnfermeiro.Add(new HorarioEnfermeiro { DataInicioTurno = dataInicioT1CFilhos, Duracao = 8, DataFimTurno = dataInicioT1CFilhos.AddHours(8), TurnoId = turno1.TurnoId, EnfermeiroId = enfermeiro2.EnfermeiroId });
+            db.HorariosEnfermeiro.Add(new HorarioEnfermeiro { DataInicioTurno = dataInicioT1, Duracao = 8, DataFimTurno = dataInicioT1.AddHours(8), TurnoId = turno1.TurnoId, EnfermeiroId = enfermeiro1.EnfermeiroId });
+            db.HorariosEnfermeiro.Add(new HorarioEnfermeiro { DataInicioTurno = dataInicioT1CFilhos, Duracao = 8, DataFimTurno = dataInicioT1CFilhos.AddHours(8), TurnoId = turno1.TurnoId, EnfermeiroId = enfermeiro12.EnfermeiroId });
+            db.HorariosEnfermeiro.Add(new HorarioEnfermeiro { DataInicioTurno = dataInicioT1, Duracao = 8, DataFimTurno = dataInicioT1.AddHours(8), TurnoId = turno1.TurnoId, EnfermeiroId = enfermeiro5.EnfermeiroId });
+            db.HorariosEnfermeiro.Add(new HorarioEnfermeiro { DataInicioTurno = dataInicioT1CFilhos, Duracao = 8, DataFimTurno = dataInicioT1CFilhos.AddHours(8), TurnoId = turno1.TurnoId, EnfermeiroId = enfermeiro3.EnfermeiroId });
+            db.HorariosEnfermeiro.Add(new HorarioEnfermeiro { DataInicioTurno = dataInicioT2, Duracao = 8, DataFimTurno = dataInicioT2.AddHours(8), TurnoId = turno2.TurnoId, EnfermeiroId = enfermeiro11.EnfermeiroId });
+            db.HorariosEnfermeiro.Add(new HorarioEnfermeiro { DataInicioTurno = dataInicioT2, Duracao = 8, DataFimTurno = dataInicioT2.AddHours(8), TurnoId = turno2.TurnoId, EnfermeiroId = enfermeiro10.EnfermeiroId });
+            db.HorariosEnfermeiro.Add(new HorarioEnfermeiro { DataInicioTurno = dataInicioT2, Duracao = 8, DataFimTurno = dataInicioT2.AddHours(8), TurnoId = turno2.TurnoId, EnfermeiroId = enfermeiro4.EnfermeiroId });
+            db.HorariosEnfermeiro.Add(new HorarioEnfermeiro { DataInicioTurno = dataInicioT3, Duracao = 8, DataFimTurno = dataInicioT3.AddHours(8), TurnoId = turno3.TurnoId, EnfermeiroId = enfermeiro8.EnfermeiroId });
+            db.HorariosEnfermeiro.Add(new HorarioEnfermeiro { DataInicioTurno = dataInicioT3, Duracao = 8, DataFimTurno = dataInicioT3.AddHours(8), TurnoId = turno3.TurnoId, EnfermeiroId = enfermeiro9.EnfermeiroId });
+
+            //5 feira
+            dataInicioT1 = new DateTime(2018, 11, 24, 8, 0, 0);
+            dataInicioT1CFilhos = new DateTime(2018, 11, 24, 9, 0, 0);
+            dataInicioT2 = new DateTime(2018, 11, 24, 16, 0, 0);
+            dataInicioT3 = new DateTime(2018, 11, 25, 0, 0, 0);
+
+            db.HorariosEnfermeiro.Add(new HorarioEnfermeiro { DataInicioTurno = dataInicioT1CFilhos, Duracao = 8, DataFimTurno = dataInicioT1CFilhos.AddHours(8), TurnoId = turno1.TurnoId, EnfermeiroId = enfermeiro12.EnfermeiroId });
+            db.HorariosEnfermeiro.Add(new HorarioEnfermeiro { DataInicioTurno = dataInicioT1, Duracao = 8, DataFimTurno = dataInicioT1.AddHours(8), TurnoId = turno1.TurnoId, EnfermeiroId = enfermeiro7.EnfermeiroId });
+            db.HorariosEnfermeiro.Add(new HorarioEnfermeiro { DataInicioTurno = dataInicioT1CFilhos, Duracao = 8, DataFimTurno = dataInicioT1CFilhos.AddHours(8), TurnoId = turno1.TurnoId, EnfermeiroId = enfermeiro2.EnfermeiroId });
+            db.HorariosEnfermeiro.Add(new HorarioEnfermeiro { DataInicioTurno = dataInicioT1, Duracao = 8, DataFimTurno = dataInicioT1.AddHours(8), TurnoId = turno1.TurnoId, EnfermeiroId = enfermeiro6.EnfermeiroId });
+            db.HorariosEnfermeiro.Add(new HorarioEnfermeiro { DataInicioTurno = dataInicioT1CFilhos, Duracao = 8, DataFimTurno = dataInicioT1CFilhos.AddHours(8), TurnoId = turno1.TurnoId, EnfermeiroId = enfermeiro3.EnfermeiroId });
+            db.HorariosEnfermeiro.Add(new HorarioEnfermeiro { DataInicioTurno = dataInicioT2, Duracao = 8, DataFimTurno = dataInicioT2.AddHours(8), TurnoId = turno2.TurnoId, EnfermeiroId = enfermeiro5.EnfermeiroId });
+            db.HorariosEnfermeiro.Add(new HorarioEnfermeiro { DataInicioTurno = dataInicioT2, Duracao = 8, DataFimTurno = dataInicioT2.AddHours(8), TurnoId = turno2.TurnoId, EnfermeiroId = enfermeiro4.EnfermeiroId });
+            db.HorariosEnfermeiro.Add(new HorarioEnfermeiro { DataInicioTurno = dataInicioT2, Duracao = 8, DataFimTurno = dataInicioT2.AddHours(8), TurnoId = turno2.TurnoId, EnfermeiroId = enfermeiro8.EnfermeiroId });
+            db.HorariosEnfermeiro.Add(new HorarioEnfermeiro { DataInicioTurno = dataInicioT3, Duracao = 8, DataFimTurno = dataInicioT3.AddHours(8), TurnoId = turno3.TurnoId, EnfermeiroId = enfermeiro1.EnfermeiroId });
+            db.HorariosEnfermeiro.Add(new HorarioEnfermeiro { DataInicioTurno = dataInicioT3, Duracao = 8, DataFimTurno = dataInicioT3.AddHours(8), TurnoId = turno3.TurnoId, EnfermeiroId = enfermeiro9.EnfermeiroId });
+
+            //6 feira
+            dataInicioT1 = new DateTime(2018, 11, 25, 8, 0, 0);
+            dataInicioT1CFilhos = new DateTime(2018, 11, 25, 9, 0, 0);
+            dataInicioT2 = new DateTime(2018, 11, 25, 16, 0, 0);
+
+            db.HorariosEnfermeiro.Add(new HorarioEnfermeiro { DataInicioTurno = dataInicioT1CFilhos, Duracao = 8, DataFimTurno = dataInicioT1CFilhos.AddHours(8), TurnoId = turno1.TurnoId, EnfermeiroId = enfermeiro11.EnfermeiroId });
+            db.HorariosEnfermeiro.Add(new HorarioEnfermeiro { DataInicioTurno = dataInicioT1, Duracao = 8, DataFimTurno = dataInicioT1.AddHours(8), TurnoId = turno1.TurnoId, EnfermeiroId = enfermeiro6.EnfermeiroId });
+            db.HorariosEnfermeiro.Add(new HorarioEnfermeiro { DataInicioTurno = dataInicioT1CFilhos, Duracao = 8, DataFimTurno = dataInicioT1CFilhos.AddHours(8), TurnoId = turno1.TurnoId, EnfermeiroId = enfermeiro12.EnfermeiroId });
+            db.HorariosEnfermeiro.Add(new HorarioEnfermeiro { DataInicioTurno = dataInicioT1, Duracao = 8, DataFimTurno = dataInicioT1.AddHours(8), TurnoId = turno1.TurnoId, EnfermeiroId = enfermeiro5.EnfermeiroId });
+            db.HorariosEnfermeiro.Add(new HorarioEnfermeiro { DataInicioTurno = dataInicioT1CFilhos, Duracao = 8, DataFimTurno = dataInicioT1CFilhos.AddHours(8), TurnoId = turno1.TurnoId, EnfermeiroId = enfermeiro10.EnfermeiroId });
+            db.HorariosEnfermeiro.Add(new HorarioEnfermeiro { DataInicioTurno = dataInicioT2, Duracao = 8, DataFimTurno = dataInicioT2.AddHours(8), TurnoId = turno2.TurnoId, EnfermeiroId = enfermeiro4.EnfermeiroId });
+            db.HorariosEnfermeiro.Add(new HorarioEnfermeiro { DataInicioTurno = dataInicioT2, Duracao = 8, DataFimTurno = dataInicioT2.AddHours(8), TurnoId = turno2.TurnoId, EnfermeiroId = enfermeiro1.EnfermeiroId });
+            db.HorariosEnfermeiro.Add(new HorarioEnfermeiro { DataInicioTurno = dataInicioT2, Duracao = 8, DataFimTurno = dataInicioT2.AddHours(8), TurnoId = turno2.TurnoId, EnfermeiroId = enfermeiro7.EnfermeiroId });
+
+            db.SaveChanges();
+        }
+
+        private static void SeedTurnos(EscalonamentoHorarios_Grupo3DbContext db)
+        {
+            if (db.Turnos.Any()) return;
+
+            db.Turnos.AddRange(
+
+                new Turno { Nome = "MANHÃ" },
+                new Turno { Nome = "TARDE" },
+                new Turno { Nome = "NOITE" }
+
+                );
+
+            db.SaveChanges();
         }
     }
     }

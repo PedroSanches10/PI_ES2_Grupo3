@@ -1,7 +1,7 @@
 ﻿@model IEnumerable<EscalonamentoHorarios_Grupo3.Models.EspecialidadeEnfermeiro>
 
 @{
-    ViewData["Title"] = "Lista de Especialidades dos Enfermeiros";
+    ViewData["Title"] = "Lista Especialidades Enfermeiros";
 }
 
 @if (TempData["successInsertEspecialidade"] != null)
@@ -44,7 +44,7 @@
     });
 </script>
 
-<h2>Lista de especialidades dos enfermeiros</h2>
+<h2>Especialidades dos Enfermeiros</h2>
 
 <table class="table">
     <thead>
@@ -79,7 +79,7 @@
 </p>
 <hr />
 <div>
-    <a href='@Url.Action("GestaoHospitalar", "DiretorServico")'>
+    <a href='@Url.Action("Home")'>
         <input type="button" class="btn btn-default" value="Voltar à página inicial" />
     </a>
 </div>
